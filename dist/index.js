@@ -49237,7 +49237,6 @@ ${log ? log : '### No Change Log'}
             )
           }
         }
-        console.log(contents)
         const file = `
   # Changelog
   ${contents}  
@@ -49455,9 +49454,12 @@ ${log ? log : '### No Change Log'}
        * The latest reachable tag starting from HEAD
        */
       async function lastTag() {
+        var _a
         return (
-          await (0, shell_1.shell)('git', ['describe', '--abbrev=0', '--tags'])
-        ).stdout.trim()
+          ((_a = await getSortableAllTags()) === null || _a === void 0
+            ? void 0
+            : _a[0]) || ''
+        )
       }
       exports.lastTag = lastTag
       async function getPreviousTag(current) {

@@ -63,9 +63,7 @@ export async function listTagNames() {
  * The latest reachable tag starting from HEAD
  */
 export async function lastTag() {
-  return (
-    await shell('git', ['describe', '--abbrev=0', '--tags'])
-  ).stdout.trim()
+  return (await getSortableAllTags())?.[0] || ''
 }
 
 export async function getPreviousTag(current: string) {

@@ -112,7 +112,6 @@ export const createChangelogFile = async () => {
       contents += await createChangelog(older ?? '', newer)
     }
   }
-  console.log(contents)
   const file = `
   # Changelog
   ${contents}  
