@@ -26,12 +26,13 @@ export async function getSortableAllTags() {
 }
 
 export async function getCurrentBranch() {
-  return (await shell('git', ['branch', '--show-current'])).stdout
+  return (await shell('git', ['branch', '--show-current'])).stdout.trim()
 }
 
 export async function getTaggedTime(tag: string) {
-  return (await shell('git', ['log', '-1', '--format=%ai', tag?.trim() || '']))
-    .stdout
+  return (
+    await shell('git', ['log', '-1', '--format=%ai', tag?.trim() || ''])
+  ).stdout.trim()
 }
 
 export function getGithubToken() {
@@ -53,7 +54,9 @@ export async function listTagNames() {
  * The latest reachable tag starting from HEAD
  */
 export async function lastTag() {
-  return (await shell('git', ['describe', '--abbrev=0', '--tags'])).stdout
+  return (
+    await shell('git', ['describe', '--abbrev=0', '--tags'])
+  ).stdout.trim()
 }
 
 export async function getPreviousTag(current: string) {
@@ -65,7 +68,7 @@ export async function getPreviousTag(current: string) {
         '--tags',
         `"${current?.trim() || ''}^"`,
       ])
-    ).stdout
+    ).stdout.trim()
   } catch {
     return ''
   }

@@ -49382,8 +49382,9 @@ ${log ? log : '### No Change Log'}
       }
       exports.getSortableAllTags = getSortableAllTags
       async function getCurrentBranch() {
-        return (await (0, shell_1.shell)('git', ['branch', '--show-current']))
-          .stdout
+        return (
+          await (0, shell_1.shell)('git', ['branch', '--show-current'])
+        ).stdout.trim()
       }
       exports.getCurrentBranch = getCurrentBranch
       async function getTaggedTime(tag) {
@@ -49394,7 +49395,7 @@ ${log ? log : '### No Change Log'}
             '--format=%ai',
             (tag === null || tag === void 0 ? void 0 : tag.trim()) || '',
           ])
-        ).stdout
+        ).stdout.trim()
       }
       exports.getTaggedTime = getTaggedTime
       function getGithubToken() {
@@ -49421,7 +49422,7 @@ ${log ? log : '### No Change Log'}
       async function lastTag() {
         return (
           await (0, shell_1.shell)('git', ['describe', '--abbrev=0', '--tags'])
-        ).stdout
+        ).stdout.trim()
       }
       exports.lastTag = lastTag
       async function getPreviousTag(current) {
@@ -49437,7 +49438,7 @@ ${log ? log : '### No Change Log'}
                   : current.trim()) || ''
               }^"`,
             ])
-          ).stdout
+          ).stdout.trim()
         } catch {
           return ''
         }
@@ -49547,7 +49548,6 @@ ${log ? log : '### No Change Log'}
         const body = await (0, changelog_1.createChangelog)(from, to)
         const branch = await (0, git_1.getCurrentBranch)()
         const token = (0, git_1.getGithubToken)()
-        console.log(body, branch, token)
         return new Promise((resolve, reject) => {
           ;(0, gh_release_1.default)(
             {
