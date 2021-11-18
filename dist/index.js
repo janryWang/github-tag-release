@@ -49584,6 +49584,7 @@ ${log ? log : '### No Change Log'}
         if (stderr) {
           throw new Error(stderr)
         }
+        console.log(stdout)
         return {
           stdout,
           stderr,

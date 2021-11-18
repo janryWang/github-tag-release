@@ -23,6 +23,7 @@ export const shell = async (commandLine: string, args?: string[]) => {
   if (stderr) {
     throw new Error(stderr)
   }
+  console.log(stdout)
   return {
     stdout,
     stderr,
