@@ -71,7 +71,7 @@ export async function getPreviousTag(current: string) {
         'describe',
         '--abbrev=0',
         '--tags',
-        `"${current?.trim() || ''}^"`,
+        `${current?.trim() || ''}^`,
       ])
     ).stdout.trim()
   } catch {

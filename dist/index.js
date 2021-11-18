@@ -49464,11 +49464,11 @@ ${log ? log : '### No Change Log'}
               'describe',
               '--abbrev=0',
               '--tags',
-              `"${
+              `${
                 (current === null || current === void 0
                   ? void 0
                   : current.trim()) || ''
-              }^"`,
+              }^`,
             ])
           ).stdout.trim()
         } catch {
