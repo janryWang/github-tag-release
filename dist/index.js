@@ -49581,6 +49581,9 @@ ${log ? log : '### No Change Log'}
           },
         }
         await (0, exec_1.exec)(commandLine, args, options)
+        if (stderr) {
+          throw new Error(stderr)
+        }
         return {
           stdout,
           stderr,

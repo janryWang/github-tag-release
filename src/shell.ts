@@ -20,6 +20,9 @@ export const shell = async (commandLine: string, args?: string[]) => {
     },
   }
   await exec(commandLine, args, options)
+  if (stderr) {
+    throw new Error(stderr)
+  }
   return {
     stdout,
     stderr,
