@@ -74,8 +74,11 @@ const getGroupChanges = async (from: string, to = 'HEAD') => {
 
 export const createChangelog = async (from?: string, to = 'HEAD') => {
   const isHead = to === 'HEAD'
-  const headVersion = isHead ? LernaJSON?.version ?? PkgJSON?.version : to
-  const changes = await getGroupChanges(from ?? (await lastTag()), to)
+  const headVersion = isHead ? LernaJSON?.version || PkgJSON?.version : to
+  const start = from || (await lastTag())
+  const end = to
+  const changes = await getGroupChanges(start, end)
+  console.log(start, end, changes)
   const nowDate = isHead
     ? moment().format('YYYY-MM-DD')
     : moment(await getTaggedTime(to), 'YYYY-MM-DD').format('YYYY-MM-DD')
@@ -102,7 +105,6 @@ ${log ? log : '### No Change Log'}
 
 export const createChangelogFile = async () => {
   const tags = (await getSortableAllTags()).slice(0, ChangelogLimit)
-  console.log(tags, ChangelogLimit)
   let contents = ''
   for (let index = 0; index < tags.length; index++) {
     const newer = tags[index]

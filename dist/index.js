@@ -49182,22 +49182,19 @@ module.exports = /******/ (() => {
         })
       }
       const createChangelog = async (from, to = 'HEAD') => {
-        var _a
         const isHead = to === 'HEAD'
         const headVersion = isHead
-          ? (_a =
-              constants_1.LernaJSON === null || constants_1.LernaJSON === void 0
-                ? void 0
-                : constants_1.LernaJSON.version) !== null && _a !== void 0
-            ? _a
-            : constants_1.PkgJSON === null || constants_1.PkgJSON === void 0
-            ? void 0
-            : constants_1.PkgJSON.version
+          ? (constants_1.LernaJSON === null || constants_1.LernaJSON === void 0
+              ? void 0
+              : constants_1.LernaJSON.version) ||
+            (constants_1.PkgJSON === null || constants_1.PkgJSON === void 0
+              ? void 0
+              : constants_1.PkgJSON.version)
           : to
-        const changes = await getGroupChanges(
-          from !== null && from !== void 0 ? from : await (0, git_1.lastTag)(),
-          to
-        )
+        const start = from || (await (0, git_1.lastTag)())
+        const end = to
+        const changes = await getGroupChanges(start, end)
+        console.log(start, end, changes)
         const nowDate = isHead
           ? (0, moment_1.default)().format('YYYY-MM-DD')
           : (0, moment_1.default)(
@@ -49230,7 +49227,6 @@ ${log ? log : '### No Change Log'}
           0,
           constants_1.ChangelogLimit
         )
-        console.log(tags, constants_1.ChangelogLimit)
         let contents = ''
         for (let index = 0; index < tags.length; index++) {
           const newer = tags[index]
