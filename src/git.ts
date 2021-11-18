@@ -30,9 +30,13 @@ export async function getCurrentBranch() {
 }
 
 export async function getTaggedTime(tag: string) {
-  return (
-    await shell('git', ['log', '-1', '--format=%ai', tag?.trim() || ''])
-  ).stdout.trim()
+  try {
+    return (
+      await shell('git', ['log', '-1', '--format=%ai', tag?.trim() || ''])
+    ).stdout.trim()
+  } catch {
+    return ''
+  }
 }
 
 export function getGithubToken() {
