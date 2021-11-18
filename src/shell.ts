@@ -1,4 +1,4 @@
-import exec, { ExecOptions } from '@actions/exec'
+import { exec, ExecOptions } from '@actions/exec'
 import { GithubToken } from './constants'
 
 export const shell = async (commandLine: string, args?: string[]) => {
@@ -19,7 +19,7 @@ export const shell = async (commandLine: string, args?: string[]) => {
       stderr += data.toString()
     },
   }
-  await exec.exec(commandLine, args, options)
+  await exec(commandLine, args, options)
   return {
     stdout,
     stderr,

@@ -49556,21 +49556,16 @@ ${log ? log : '### No Change Log'}
       /***/
     },
 
-    /***/ 6397: /***/ function (
+    /***/ 6397: /***/ (
       __unused_webpack_module,
       exports,
       __webpack_require__
-    ) {
+    ) => {
       'use strict'
 
-      var __importDefault =
-        (this && this.__importDefault) ||
-        function (mod) {
-          return mod && mod.__esModule ? mod : { default: mod }
-        }
       Object.defineProperty(exports, '__esModule', { value: true })
       exports.shell = void 0
-      const exec_1 = __importDefault(__webpack_require__(1514))
+      const exec_1 = __webpack_require__(1514)
       const constants_1 = __webpack_require__(9042)
       const shell = async (commandLine, args) => {
         const options = {
@@ -49590,7 +49585,7 @@ ${log ? log : '### No Change Log'}
             stderr += data.toString()
           },
         }
-        await exec_1.default.exec(commandLine, args, options)
+        await (0, exec_1.exec)(commandLine, args, options)
         return {
           stdout,
           stderr,
