@@ -1,0 +1,19 @@
+name: 'github-tag-release'
+description: 'a github actions to auto create release'
+author: 'JanryWang'
+branding:
+  icon: 'airplay'
+  color: 'green'
+inputs:
+  github_token:
+    required: true
+    description: the GITHUB_TOKEN
+  changelog_limit:
+    description: Changelog Max Items
+  release_title:
+    description: Release Note Title
+  auto_commit_message:
+    description: Auto Commit Message
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
