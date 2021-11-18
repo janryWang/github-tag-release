@@ -49476,16 +49476,21 @@ ${log ? log : '### No Change Log'}
       'use strict'
 
       Object.defineProperty(exports, '__esModule', { value: true })
+      const core_1 = __webpack_require__(2186)
       const changelog_1 = __webpack_require__(8598)
       const release_note_1 = __webpack_require__(4944)
       const commit_1 = __webpack_require__(1730)
       const runner = async () => {
-        await (0, changelog_1.createChangelogFile)()
-        console.info('ChangeLog generated success!')
-        await (0, release_note_1.createReleaseNote)()
-        console.info('ReleaseNote generated success!')
-        await (0, commit_1.commit)()
-        console.info('Git Commit Success!')
+        try {
+          await (0, changelog_1.createChangelogFile)()
+          ;(0, core_1.info)('ChangeLog generated success!')
+          await (0, release_note_1.createReleaseNote)()
+          ;(0, core_1.info)('ReleaseNote generated success!')
+          await (0, commit_1.commit)()
+          ;(0, core_1.info)('Git Commit Success!')
+        } catch (e) {
+          ;(0, core_1.setFailed)(e)
+        }
       }
       runner()
 
@@ -49584,7 +49589,6 @@ ${log ? log : '### No Change Log'}
         if (stderr) {
           throw new Error(stderr)
         }
-        console.log(stdout)
         return {
           stdout,
           stderr,

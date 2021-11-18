@@ -1,14 +1,19 @@
+import { info, setFailed } from '@actions/core'
 import { createChangelogFile } from './changelog'
 import { createReleaseNote } from './release-note'
 import { commit } from './commit'
 
 const runner = async () => {
-  await createChangelogFile()
-  console.info('ChangeLog generated success!')
-  await createReleaseNote()
-  console.info('ReleaseNote generated success!')
-  await commit()
-  console.info('Git Commit Success!')
+  try {
+    await createChangelogFile()
+    info('ChangeLog generated success!')
+    await createReleaseNote()
+    info('ReleaseNote generated success!')
+    await commit()
+    info('Git Commit Success!')
+  } catch (e) {
+    setFailed(e)
+  }
 }
 
 runner()
