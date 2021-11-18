@@ -49257,12 +49257,34 @@ ${log ? log : '### No Change Log'}
       Object.defineProperty(exports, '__esModule', { value: true })
       exports.commit = void 0
       const constants_1 = __webpack_require__(9042)
+      const git_1 = __webpack_require__(6350)
       const shell_1 = __webpack_require__(6397)
       const commit = async () => {
-        return await (0, shell_1.shell)('git', [
-          '-am',
-          constants_1.AutoCommitMessage,
+        await (0, shell_1.shell)('git', [
+          'config',
+          '--local',
+          'user.name',
+          `"Github Actions Robot"`,
         ])
+        await (0, shell_1.shell)('git', [
+          'config',
+          '--local',
+          'user.email',
+          `"41898282+github-actions[bot]@users.noreply.github.com"`,
+        ])
+        await (0, shell_1.shell)('git', [
+          'remote',
+          'set-url',
+          'origin',
+          `https://x-access-token:${(0,
+          git_1.getGithubToken)()}@github.com/${(0, git_1.getGithubRepoUrl)()}`,
+        ])
+        await (0, shell_1.shell)('git', [
+          '-A',
+          '-m',
+          `"${constants_1.AutoCommitMessage}"`,
+        ])
+        await (0, shell_1.shell)('git', ['push'])
       }
       exports.commit = commit
 
@@ -49346,6 +49368,7 @@ ${log ? log : '### No Change Log'}
         exports.getPreviousTag =
         exports.lastTag =
         exports.listTagNames =
+        exports.getGithubRepoUrl =
         exports.getGithubRepoLink =
         exports.getGithubToken =
         exports.getTaggedTime =
@@ -49407,6 +49430,11 @@ ${log ? log : '### No Change Log'}
         return `https://github.com/${repo.owner}/${repo.repo}`
       }
       exports.getGithubRepoLink = getGithubRepoLink
+      function getGithubRepoUrl() {
+        const repo = github_1.context.repo
+        return `git@github.com:${repo.owner}/${repo.repo}.git`
+      }
+      exports.getGithubRepoUrl = getGithubRepoUrl
       /**
        * All existing tags in the repository
        */

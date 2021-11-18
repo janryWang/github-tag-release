@@ -1,4 +1,1 @@
-export declare const commit: () => Promise<{
-  stdout: string
-  stderr: string
-}>
+export declare const commit: () => Promise<void>

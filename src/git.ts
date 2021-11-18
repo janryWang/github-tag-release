@@ -43,6 +43,11 @@ export function getGithubRepoLink() {
   const repo = context.repo
   return `https://github.com/${repo.owner}/${repo.repo}`
 }
+
+export function getGithubRepoUrl() {
+  const repo = context.repo
+  return `git@github.com:${repo.owner}/${repo.repo}.git`
+}
 /**
  * All existing tags in the repository
  */

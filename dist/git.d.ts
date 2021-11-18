@@ -4,6 +4,7 @@ export declare function getCurrentBranch(): Promise<string>
 export declare function getTaggedTime(tag: string): Promise<string>
 export declare function getGithubToken(): string
 export declare function getGithubRepoLink(): string
+export declare function getGithubRepoUrl(): string
 /**
  * All existing tags in the repository
  */
