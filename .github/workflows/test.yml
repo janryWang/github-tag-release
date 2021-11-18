@@ -16,3 +16,5 @@ jobs:
       - name: Use github-tag-release
         id: 'github-tag-release'
         uses: ./
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
