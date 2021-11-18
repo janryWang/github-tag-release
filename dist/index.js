@@ -49480,17 +49480,12 @@ ${log ? log : '### No Change Log'}
       const release_note_1 = __webpack_require__(4944)
       const commit_1 = __webpack_require__(1730)
       const runner = async () => {
-        try {
-          await (0, changelog_1.createChangelogFile)()
-          console.info('ChangeLog generated success!')
-          await (0, release_note_1.createReleaseNote)()
-          console.info('ReleaseNote generated success!')
-          await (0, commit_1.commit)()
-          console.info('Git Commit Success!')
-        } catch (e) {
-          console.error(e)
-          throw e
-        }
+        await (0, changelog_1.createChangelogFile)()
+        console.info('ChangeLog generated success!')
+        await (0, release_note_1.createReleaseNote)()
+        console.info('ReleaseNote generated success!')
+        await (0, commit_1.commit)()
+        console.info('Git Commit Success!')
       }
       runner()
 
