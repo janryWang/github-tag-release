@@ -49230,11 +49230,8 @@ ${log ? log : '### No Change Log'}
         for (let index = 0; index < tags.length; index++) {
           const newer = tags[index]
           const older = tags[index + 1]
-          if (older) {
-            contents += await (0, exports.createChangelog)(older, newer)
-          }
+          contents += await (0, exports.createChangelog)(older, newer)
         }
-        console.log(contents)
         const file = `
   # Changelog
   ${contents}  
