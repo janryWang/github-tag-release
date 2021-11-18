@@ -49285,7 +49285,7 @@ ${log ? log : '### No Change Log'}
         await (0, shell_1.shell)('git', [
           'commit',
           '-m',
-          `"${constants_1.AutoCommitMessage}"`,
+          constants_1.AutoCommitMessage,
         ])
         await (0, shell_1.shell)('git', ['push'])
       }
@@ -49644,9 +49644,6 @@ ${log ? log : '### No Change Log'}
           },
         }
         await (0, exec_1.exec)(commandLine, args, options)
-        if (stderr) {
-          throw new Error(stderr)
-        }
         return {
           stdout,
           stderr,
