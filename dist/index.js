@@ -49420,14 +49420,18 @@ ${log ? log : '### No Change Log'}
       }
       exports.lastTag = lastTag
       async function getPreviousTag(current) {
-        return (
-          await (0, shell_1.shell)('git', [
-            'describe',
-            '--abbrev=0',
-            '--tags',
-            current + '^',
-          ])
-        ).stdout
+        try {
+          return (
+            await (0, shell_1.shell)('git', [
+              'describe',
+              '--abbrev=0',
+              '--tags',
+              current + '^',
+            ])
+          ).stdout
+        } catch {
+          return ''
+        }
       }
       exports.getPreviousTag = getPreviousTag
       function parseLogMessage(commit) {
@@ -49450,13 +49454,17 @@ ${log ? log : '### No Change Log'}
       async function listCommits(from, to = '') {
         // Prints "hash<short-hash> ref<ref-name> message<summary> date<date>"
         // This format is used in `getCommitInfos` for easily analize the commit.
+        const getRange = () => {
+          if (!from || from == to) return to
+          return `${from}..${to}`
+        }
         return (
           await (0, shell_1.shell)('git', [
             'log',
             '--oneline',
             '--pretty="hash<%h> ref<%D> message<%s> date<%cd> author<%an>"',
             '--date=short',
-            `${from}..${to}`,
+            getRange(),
           ])
         ).stdout
           .split('\n')
