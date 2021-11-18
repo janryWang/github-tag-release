@@ -16,7 +16,8 @@ jobs:
     if: contains(github.event.head_commit.message, 'chore(release)')
     steps:
       - uses: actions/checkout@v2
-
+        with:
+          fetch-depth: 0
       - name: Use github-tag-release
         uses: janrywang/github-tag-release
         with:
