@@ -114,7 +114,7 @@ export async function listCommits(
       '--oneline',
       '--pretty="hash<%h> ref<%D> message<%s> date<%cd> author<%an>"',
       '--date=short',
-      `"${getRange()}"`,
+      `${getRange()}`,
     ])
   ).stdout
     .split('\n')
