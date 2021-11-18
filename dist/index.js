@@ -49230,8 +49230,12 @@ ${log ? log : '### No Change Log'}
         for (let index = 0; index < tags.length; index++) {
           const newer = tags[index]
           const older = tags[index + 1]
-          contents += await (0, exports.createChangelog)(older, newer)
+          contents += await (0, exports.createChangelog)(
+            older !== null && older !== void 0 ? older : '',
+            newer
+          )
         }
+        console.log(contents)
         const file = `
   # Changelog
   ${contents}  
@@ -49492,6 +49496,10 @@ ${log ? log : '### No Change Log'}
         const getRange = () => {
           if (!from || from == to)
             return (to === null || to === void 0 ? void 0 : to.trim()) || ''
+          if (!to)
+            return (
+              (from === null || from === void 0 ? void 0 : from.trim()) || ''
+            )
           return `${
             (from === null || from === void 0 ? void 0 : from.trim()) || ''
           }..${(to === null || to === void 0 ? void 0 : to.trim()) || ''}`

@@ -108,8 +108,9 @@ export const createChangelogFile = async () => {
   for (let index = 0; index < tags.length; index++) {
     const newer = tags[index]
     const older = tags[index + 1]
-    contents += await createChangelog(older, newer)
+    contents += await createChangelog(older ?? '', newer)
   }
+  console.log(contents)
   const file = `
   # Changelog
   ${contents}  

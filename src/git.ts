@@ -114,6 +114,7 @@ export async function listCommits(
   // This format is used in `getCommitInfos` for easily analize the commit.
   const getRange = () => {
     if (!from || from == to) return to?.trim() || ''
+    if (!to) return from?.trim() || ''
     return `${from?.trim() || ''}..${to?.trim() || ''}`
   }
 
