@@ -49230,6 +49230,7 @@ ${log ? log : '### No Change Log'}
           0,
           constants_1.ChangelogLimit
         )
+        console.log(tags, constants_1.ChangelogLimit)
         let contents = ''
         for (let index = 0; index < tags.length; index++) {
           const newer = tags[index]

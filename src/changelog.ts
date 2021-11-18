@@ -102,6 +102,7 @@ ${log ? log : '### No Change Log'}
 
 export const createChangelogFile = async () => {
   const tags = (await getSortableAllTags()).slice(0, ChangelogLimit)
+  console.log(tags, ChangelogLimit)
   let contents = ''
   for (let index = 0; index < tags.length; index++) {
     const newer = tags[index]
