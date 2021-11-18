@@ -12,7 +12,7 @@ on:
   pull_request:
 
 jobs:
-  git-auto-commit:
+  github-tag-release:
     runs-on: ubuntu-latest
 
     steps:
