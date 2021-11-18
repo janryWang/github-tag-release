@@ -49279,8 +49279,9 @@ ${log ? log : '### No Change Log'}
           `https://x-access-token:${(0,
           git_1.getGithubToken)()}@github.com/${(0, git_1.getGithubRepoUrl)()}`,
         ])
+        await (0, shell_1.shell)('git', ['add', '-A'])
         await (0, shell_1.shell)('git', [
-          '-A',
+          'commit',
           '-m',
           `"${constants_1.AutoCommitMessage}"`,
         ])

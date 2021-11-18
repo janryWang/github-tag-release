@@ -21,6 +21,7 @@ export const commit = async () => {
     'origin',
     `https://x-access-token:${getGithubToken()}@github.com/${getGithubRepoUrl()}`,
   ])
-  await shell('git', ['-A', '-m', `"${AutoCommitMessage}"`])
+  await shell('git', ['add', '-A'])
+  await shell('git', ['commit', '-m', `"${AutoCommitMessage}"`])
   await shell('git', ['push'])
 }
