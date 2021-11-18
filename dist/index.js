@@ -49435,7 +49435,7 @@ ${log ? log : '### No Change Log'}
       exports.getGithubRepoLink = getGithubRepoLink
       function getGithubRepoUrl() {
         const repo = github_1.context.repo
-        return `git@github.com:${repo.owner}/${repo.repo}.git`
+        return `${repo.owner}/${repo.repo}`
       }
       exports.getGithubRepoUrl = getGithubRepoUrl
       /**
