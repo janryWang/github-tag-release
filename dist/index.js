@@ -49459,15 +49459,18 @@ ${log ? log : '### No Change Log'}
         // Prints "hash<short-hash> ref<ref-name> message<summary> date<date>"
         // This format is used in `getCommitInfos` for easily analize the commit.
         const getRange = () => {
-          if (!from || from == to) return to
-          return `${from}..${to}`
+          if (!from || from == to)
+            return (to === null || to === void 0 ? void 0 : to.trim()) || ''
+          return `${
+            (from === null || from === void 0 ? void 0 : from.trim()) || ''
+          }..${(to === null || to === void 0 ? void 0 : to.trim()) || ''}`
         }
         return (
           await (0, shell_1.shell)('git', [
             'log',
             '--oneline',
             '--pretty="hash<%h> ref<%D> message<%s> date<%cd> author<%an>"',
-            '--date="short"',
+            '--date=short',
             `"${getRange()}"`,
           ])
         ).stdout
