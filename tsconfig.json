@@ -5,7 +5,7 @@
     "outDir": "./dist",
     "jsx": "react",
     "module": "commonjs",
-    "target": "ES2015",
+    "target": "ES2016",
     "allowJs": false,
     "noUnusedLocals": false,
     "preserveConstEnums": true,
