@@ -49110,41 +49110,6 @@ module.exports = /******/ (() => {
     ) {
       'use strict'
 
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
       var __importDefault =
         (this && this.__importDefault) ||
         function (mod) {
@@ -49175,80 +49140,72 @@ module.exports = /******/ (() => {
       const isGithubTagReleaseCommit = (str) => {
         return str.includes(constants_1.AutoCommitMessage)
       }
-      const getCurrentChanges = (from, to = 'HEAD') =>
-        __awaiter(void 0, void 0, void 0, function* () {
-          const contents = []
-          return (yield (0, git_1.listCommits)(from, to)).filter(
-            ({ summary }) => {
-              if (
-                contents.some(
-                  (target) =>
-                    (0, string_similarity_1.compareTwoStrings)(
-                      target,
-                      summary
-                    ) > 0.5
-                )
+      const getCurrentChanges = async (from, to = 'HEAD') => {
+        const contents = []
+        return (await (0, git_1.listCommits)(from, to)).filter(
+          ({ summary }) => {
+            if (
+              contents.some(
+                (target) =>
+                  (0, string_similarity_1.compareTwoStrings)(target, summary) >
+                  0.5
               )
-                return false
-              if (isPublishMessage(summary)) return false
-              if (isGithubTagReleaseCommit(summary)) return false
-              contents.push(summary)
-              return true
+            )
+              return false
+            if (isPublishMessage(summary)) return false
+            if (isGithubTagReleaseCommit(summary)) return false
+            contents.push(summary)
+            return true
+          }
+        )
+      }
+      const getGroupChanges = async (from, to = 'HEAD') => {
+        const changes = await getCurrentChanges(from, to)
+        const results = CommitGroupBy.map(([group]) => [group, []])
+        changes.forEach(({ summary, author, sha }) => {
+          for (const [group, value] of CommitGroupBy) {
+            if (value.some((target) => summary.indexOf(target) === 0)) {
+              results.forEach((item) => {
+                if (item[0] === group) {
+                  item[1].push(
+                    `[${summary}](${(0,
+                    git_1.getGithubRepoLink)()}/commit/${sha}) :point_right: ( [${author}](https://github.com/${author}) )`
+                  )
+                }
+              })
             }
-          )
+          }
         })
-      const getGroupChanges = (from, to = 'HEAD') =>
-        __awaiter(void 0, void 0, void 0, function* () {
-          const changes = yield getCurrentChanges(from, to)
-          const results = CommitGroupBy.map(([group]) => [group, []])
-          changes.forEach(({ summary, author, sha }) => {
-            for (const [group, value] of CommitGroupBy) {
-              if (value.some((target) => summary.indexOf(target) === 0)) {
-                results.forEach((item) => {
-                  if (item[0] === group) {
-                    item[1].push(
-                      `[${summary}](${(0,
-                      git_1.getGithubRepoLink)()}/commit/${sha}) :point_right: ( [${author}](https://github.com/${author}) )`
-                    )
-                  }
-                })
-              }
-            }
-          })
-          return results.filter(([, value]) => {
-            return value.length > 0
-          })
+        return results.filter(([, value]) => {
+          return value.length > 0
         })
-      const createChangelog = (from, to = 'HEAD') =>
-        __awaiter(void 0, void 0, void 0, function* () {
-          var _a
-          const isHead = to === 'HEAD'
-          const headVersion = isHead
-            ? (_a =
-                constants_1.LernaJSON === null ||
-                constants_1.LernaJSON === void 0
-                  ? void 0
-                  : constants_1.LernaJSON.version) !== null && _a !== void 0
-              ? _a
-              : constants_1.PkgJSON === null || constants_1.PkgJSON === void 0
-              ? void 0
-              : constants_1.PkgJSON.version
-            : to
-          const changes = yield getGroupChanges(
-            from !== null && from !== void 0
-              ? from
-              : yield (0, git_1.lastTag)(),
-            to
-          )
-          const nowDate = isHead
-            ? (0, moment_1.default)().format('YYYY-MM-DD')
-            : (0, moment_1.default)(
-                yield (0, git_1.getTaggedTime)(to),
-                'YYYY-MM-DD'
-              ).format('YYYY-MM-DD')
-          const log = changes
-            .map(([group, contents]) => {
-              return `
+      }
+      const createChangelog = async (from, to = 'HEAD') => {
+        var _a
+        const isHead = to === 'HEAD'
+        const headVersion = isHead
+          ? (_a =
+              constants_1.LernaJSON === null || constants_1.LernaJSON === void 0
+                ? void 0
+                : constants_1.LernaJSON.version) !== null && _a !== void 0
+            ? _a
+            : constants_1.PkgJSON === null || constants_1.PkgJSON === void 0
+            ? void 0
+            : constants_1.PkgJSON.version
+          : to
+        const changes = await getGroupChanges(
+          from !== null && from !== void 0 ? from : await (0, git_1.lastTag)(),
+          to
+        )
+        const nowDate = isHead
+          ? (0, moment_1.default)().format('YYYY-MM-DD')
+          : (0, moment_1.default)(
+              await (0, git_1.getTaggedTime)(to),
+              'YYYY-MM-DD'
+            ).format('YYYY-MM-DD')
+        const log = changes
+          .map(([group, contents]) => {
+            return `
 ### ${group}
 ${contents
   .map((content) => {
@@ -49258,90 +49215,55 @@ ${contents
   })
   .join('')}  
 `
-            })
-            .join('')
-          return `
+          })
+          .join('')
+        return `
 ## ${headVersion}(${nowDate})
 
 ${log ? log : '### No Change Log'}
 `
-        })
+      }
       exports.createChangelog = createChangelog
-      const createChangelogFile = () =>
-        __awaiter(void 0, void 0, void 0, function* () {
-          const tags = (yield (0, git_1.getSortableAllTags)()).slice(
-            0,
-            constants_1.ChangelogLimit
-          )
-          let contents = ''
-          for (let index = 0; index < tags.length; index++) {
-            const newer = tags[index]
-            const older = tags[index + 1]
-            if (older) {
-              contents += yield (0, exports.createChangelog)(older, newer)
-            }
+      const createChangelogFile = async () => {
+        const tags = (await (0, git_1.getSortableAllTags)()).slice(
+          0,
+          constants_1.ChangelogLimit
+        )
+        let contents = ''
+        for (let index = 0; index < tags.length; index++) {
+          const newer = tags[index]
+          const older = tags[index + 1]
+          if (older) {
+            contents += await (0, exports.createChangelog)(older, newer)
           }
-          return `
+        }
+        return `
   # Changelog
   ${contents}  
   `
-        })
+      }
       exports.createChangelogFile = createChangelogFile
 
       /***/
     },
 
-    /***/ 1730: /***/ function (
+    /***/ 1730: /***/ (
       __unused_webpack_module,
       exports,
       __webpack_require__
-    ) {
+    ) => {
       'use strict'
 
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
       Object.defineProperty(exports, '__esModule', { value: true })
       exports.commit = void 0
       const constants_1 = __webpack_require__(9042)
       const shell_1 = __webpack_require__(6397)
-      const commit = () =>
-        __awaiter(void 0, void 0, void 0, function* () {
-          return yield (0,
-          shell_1.shell)('git', ['-am', constants_1.AutoCommitMessage])
-        })
+      const commit = async () => {
+        return await (0, shell_1.shell)('git', [
+          '-am',
+          constants_1.AutoCommitMessage,
+        ])
+      }
       exports.commit = commit
 
       /***/
@@ -49380,14 +49302,14 @@ ${log ? log : '### No Change Log'}
           _a !== void 0
             ? _a
             : {}
-      } catch (_e) {}
+      } catch {}
       try {
         exports.PkgJSON = PkgJSON =
           (_b = fs_extra_1.default.readJSONSync('package.json')) !== null &&
           _b !== void 0
             ? _b
             : {}
-      } catch (_f) {}
+      } catch {}
       exports.ChangelogLimit = Number(
         (0, core_1.getInput)('changelog_limit') || 40
       )
@@ -49413,41 +49335,6 @@ ${log ? log : '### No Change Log'}
     ) {
       'use strict'
 
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
       var __importDefault =
         (this && this.__importDefault) ||
         function (mod) {
@@ -49470,43 +49357,38 @@ ${log ? log : '### No Change Log'}
       const semver_1 = __importDefault(__webpack_require__(1383))
       const constants_1 = __webpack_require__(9042)
       const shell_1 = __webpack_require__(6397)
-      function changedPaths(sha) {
-        return __awaiter(this, void 0, void 0, function* () {
-          return (yield (0, shell_1.shell)('git', [
+      async function changedPaths(sha) {
+        return (
+          await (0, shell_1.shell)('git', [
             'show',
             '-m',
             '--name-only',
             '--pretty=format:',
             '--first-parent',
             sha,
-          ])).stdout.split('\n')
-        })
+          ])
+        ).stdout.split('\n')
       }
       exports.changedPaths = changedPaths
-      function getSortableAllTags() {
-        return __awaiter(this, void 0, void 0, function* () {
-          return (yield (0, shell_1.shell)('git', ['tag', '-l'])).stdout
-            .split(/\n/)
-            .sort((a, b) => {
-              const v1 = a.replace(/^v/, '')
-              const v2 = b.replace(/^v/, '')
-              return semver_1.default.gte(v1, v2) ? -1 : 1
-            })
-        })
+      async function getSortableAllTags() {
+        return (await (0, shell_1.shell)('git', ['tag', '-l'])).stdout
+          .split(/\n/)
+          .sort((a, b) => {
+            const v1 = a.replace(/^v/, '')
+            const v2 = b.replace(/^v/, '')
+            return semver_1.default.gte(v1, v2) ? -1 : 1
+          })
       }
       exports.getSortableAllTags = getSortableAllTags
-      function getCurrentBranch() {
-        return __awaiter(this, void 0, void 0, function* () {
-          return (yield (0,
-          shell_1.shell)('git', ['branch', '--show-current'])).stdout
-        })
+      async function getCurrentBranch() {
+        return (await (0, shell_1.shell)('git', ['branch', '--show-current']))
+          .stdout
       }
       exports.getCurrentBranch = getCurrentBranch
-      function getTaggedTime(tag) {
-        return __awaiter(this, void 0, void 0, function* () {
-          return (yield (0,
-          shell_1.shell)('git', ['log', '-1', '--format=%ai', tag])).stdout
-        })
+      async function getTaggedTime(tag) {
+        return (
+          await (0, shell_1.shell)('git', ['log', '-1', '--format=%ai', tag])
+        ).stdout
       }
       exports.getTaggedTime = getTaggedTime
       function getGithubToken() {
@@ -49521,29 +49403,30 @@ ${log ? log : '### No Change Log'}
       /**
        * All existing tags in the repository
        */
-      function listTagNames() {
-        return __awaiter(this, void 0, void 0, function* () {
-          return (yield (0, shell_1.shell)('git', ['tag'])).stdout
-            .split('\n')
-            .filter(Boolean)
-        })
+      async function listTagNames() {
+        return (await (0, shell_1.shell)('git', ['tag'])).stdout
+          .split('\n')
+          .filter(Boolean)
       }
       exports.listTagNames = listTagNames
       /**
        * The latest reachable tag starting from HEAD
        */
-      function lastTag() {
-        return __awaiter(this, void 0, void 0, function* () {
-          return (yield (0,
-          shell_1.shell)('git', ['describe', '--abbrev=0', '--tags'])).stdout
-        })
+      async function lastTag() {
+        return (
+          await (0, shell_1.shell)('git', ['describe', '--abbrev=0', '--tags'])
+        ).stdout
       }
       exports.lastTag = lastTag
-      function getPreviousTag(current) {
-        return __awaiter(this, void 0, void 0, function* () {
-          return (yield (0,
-          shell_1.shell)('git', ['describe', '--abbrev=0', '--tags', current + '^'])).stdout
-        })
+      async function getPreviousTag(current) {
+        return (
+          await (0, shell_1.shell)('git', [
+            'describe',
+            '--abbrev=0',
+            '--tags',
+            current + '^',
+          ])
+        ).stdout
       }
       exports.getPreviousTag = getPreviousTag
       function parseLogMessage(commit) {
@@ -49563,88 +49446,52 @@ ${log ? log : '### No Change Log'}
         }
       }
       exports.parseLogMessage = parseLogMessage
-      function listCommits(from, to = '') {
-        return __awaiter(this, void 0, void 0, function* () {
-          // Prints "hash<short-hash> ref<ref-name> message<summary> date<date>"
-          // This format is used in `getCommitInfos` for easily analize the commit.
-          return (yield (0, shell_1.shell)('git', [
+      async function listCommits(from, to = '') {
+        // Prints "hash<short-hash> ref<ref-name> message<summary> date<date>"
+        // This format is used in `getCommitInfos` for easily analize the commit.
+        return (
+          await (0, shell_1.shell)('git', [
             'log',
             '--oneline',
             '--pretty="hash<%h> ref<%D> message<%s> date<%cd> author<%an>"',
             '--date=short',
             `${from}..${to}`,
-          ])).stdout
-            .split('\n')
-            .filter(Boolean)
-            .map(parseLogMessage)
-            .filter(Boolean)
-        })
+          ])
+        ).stdout
+          .split('\n')
+          .filter(Boolean)
+          .map(parseLogMessage)
+          .filter(Boolean)
       }
       exports.listCommits = listCommits
 
       /***/
     },
 
-    /***/ 6144: /***/ function (
+    /***/ 6144: /***/ (
       __unused_webpack_module,
       exports,
       __webpack_require__
-    ) {
+    ) => {
       'use strict'
 
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
       Object.defineProperty(exports, '__esModule', { value: true })
       const changelog_1 = __webpack_require__(8598)
       const release_note_1 = __webpack_require__(4944)
       const commit_1 = __webpack_require__(1730)
-      const runner = () =>
-        __awaiter(void 0, void 0, void 0, function* () {
-          try {
-            yield (0, changelog_1.createChangelogFile)()
-            console.info('ChangeLog generated success!')
-            yield (0, release_note_1.createReleaseNote)()
-            console.info('ReleaseNote generated success!')
-            yield (0, commit_1.commit)()
-            console.info('Git Commit Success!')
-          } catch (e) {
-            console.error(e)
-            throw e
-          }
-        })
+      const runner = async () => {
+        try {
+          await (0, changelog_1.createChangelogFile)()
+          console.info('ChangeLog generated success!')
+          await (0, release_note_1.createReleaseNote)()
+          console.info('ReleaseNote generated success!')
+          await (0, commit_1.commit)()
+          console.info('Git Commit Success!')
+        } catch (e) {
+          console.error(e)
+          throw e
+        }
+      }
       runner()
 
       /***/
@@ -49657,41 +49504,6 @@ ${log ? log : '### No Change Log'}
     ) {
       'use strict'
 
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
       var __importDefault =
         (this && this.__importDefault) ||
         function (mod) {
@@ -49707,38 +49519,38 @@ ${log ? log : '### No Change Log'}
       const isPrerelease = (tag) => {
         return /(?:beta|rc|alpha)/.test(tag)
       }
-      const createReleaseNote = () =>
-        __awaiter(void 0, void 0, void 0, function* () {
-          const to = yield (0, git_1.lastTag)()
-          const from = yield (0, git_1.getPreviousTag)(to)
-          const body = yield (0, changelog_1.createChangelog)(from, to)
-          const branch = yield (0, git_1.getCurrentBranch)()
-          const token = (0, git_1.getGithubToken)()
-          return new Promise((resolve, reject) => {
-            ;(0, gh_release_1.default)(
-              Object.assign(Object.assign({}, github_1.context.repo), {
-                cli: true,
-                tag_name: to,
-                target_commitish: branch,
-                name: `${constants_1.ReleaseTitle} - ${to}`,
-                body,
-                draft: false,
-                prerelease: isPrerelease(to),
-                endpoint: 'https://api.github.com',
-                auth: {
-                  token,
-                },
-              }),
-              (err, response) => {
-                if (err) {
-                  reject()
-                } else {
-                  resolve(response)
-                }
+      const createReleaseNote = async () => {
+        const to = await (0, git_1.lastTag)()
+        const from = await (0, git_1.getPreviousTag)(to)
+        const body = await (0, changelog_1.createChangelog)(from, to)
+        const branch = await (0, git_1.getCurrentBranch)()
+        const token = (0, git_1.getGithubToken)()
+        return new Promise((resolve, reject) => {
+          ;(0, gh_release_1.default)(
+            {
+              ...github_1.context.repo,
+              cli: true,
+              tag_name: to,
+              target_commitish: branch,
+              name: `${constants_1.ReleaseTitle} - ${to}`,
+              body,
+              draft: false,
+              prerelease: isPrerelease(to),
+              endpoint: 'https://api.github.com',
+              auth: {
+                token,
+              },
+            },
+            (err, response) => {
+              if (err) {
+                reject()
+              } else {
+                resolve(response)
               }
-            )
-          })
+            }
+          )
         })
+      }
       exports.createReleaseNote = createReleaseNote
 
       /***/
@@ -49751,41 +49563,6 @@ ${log ? log : '### No Change Log'}
     ) {
       'use strict'
 
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
       var __importDefault =
         (this && this.__importDefault) ||
         function (mod) {
@@ -49795,30 +49572,30 @@ ${log ? log : '### No Change Log'}
       exports.shell = void 0
       const exec_1 = __importDefault(__webpack_require__(1514))
       const constants_1 = __webpack_require__(9042)
-      const shell = (commandLine, args) =>
-        __awaiter(void 0, void 0, void 0, function* () {
-          const options = {
-            env: Object.assign(Object.assign({}, process.env), {
-              GITHUB_TOKEN: constants_1.GithubToken,
-              GH_TOKEN: constants_1.GithubToken,
-            }),
-          }
-          let stdout = ''
-          let stderr = ''
-          options.listeners = {
-            stdout: (data) => {
-              stdout += data.toString()
-            },
-            stderr: (data) => {
-              stderr += data.toString()
-            },
-          }
-          yield exec_1.default.exec(commandLine, args, options)
-          return {
-            stdout,
-            stderr,
-          }
-        })
+      const shell = async (commandLine, args) => {
+        const options = {
+          env: {
+            ...process.env,
+            GITHUB_TOKEN: constants_1.GithubToken,
+            GH_TOKEN: constants_1.GithubToken,
+          },
+        }
+        let stdout = ''
+        let stderr = ''
+        options.listeners = {
+          stdout: (data) => {
+            stdout += data.toString()
+          },
+          stderr: (data) => {
+            stderr += data.toString()
+          },
+        }
+        await exec_1.default.exec(commandLine, args, options)
+        return {
+          stdout,
+          stderr,
+        }
+      }
       exports.shell = shell
 
       /***/
