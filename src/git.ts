@@ -58,7 +58,12 @@ export async function lastTag() {
 export async function getPreviousTag(current: string) {
   try {
     return (
-      await shell('git', ['describe', '--abbrev=0', '--tags', `"${current}^"`])
+      await shell('git', [
+        'describe',
+        '--abbrev=0',
+        '--tags',
+        `"${current?.trim() || ''}^"`,
+      ])
     ).stdout
   } catch {
     return ''
@@ -99,7 +104,7 @@ export async function listCommits(
   // Prints "hash<short-hash> ref<ref-name> message<summary> date<date>"
   // This format is used in `getCommitInfos` for easily analize the commit.
   const getRange = () => {
-    if (!from || from == to) return ''
+    if (!from || from == to) return to
     return `${from}..${to}`
   }
 
@@ -108,8 +113,8 @@ export async function listCommits(
       'log',
       '--oneline',
       '--pretty="hash<%h> ref<%D> message<%s> date<%cd> author<%an>"',
-      '--date=short',
-      getRange(),
+      '--date="short"',
+      `"${getRange()}"`,
     ])
   ).stdout
     .split('\n')

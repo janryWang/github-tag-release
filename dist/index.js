@@ -49426,7 +49426,11 @@ ${log ? log : '### No Change Log'}
               'describe',
               '--abbrev=0',
               '--tags',
-              `"${current}^"`,
+              `"${
+                (current === null || current === void 0
+                  ? void 0
+                  : current.trim()) || ''
+              }^"`,
             ])
           ).stdout
         } catch {
@@ -49455,7 +49459,7 @@ ${log ? log : '### No Change Log'}
         // Prints "hash<short-hash> ref<ref-name> message<summary> date<date>"
         // This format is used in `getCommitInfos` for easily analize the commit.
         const getRange = () => {
-          if (!from || from == to) return ''
+          if (!from || from == to) return to
           return `${from}..${to}`
         }
         return (
@@ -49463,8 +49467,8 @@ ${log ? log : '### No Change Log'}
             'log',
             '--oneline',
             '--pretty="hash<%h> ref<%D> message<%s> date<%cd> author<%an>"',
-            '--date=short',
-            getRange(),
+            '--date="short"',
+            `"${getRange()}"`,
           ])
         ).stdout
           .split('\n')
