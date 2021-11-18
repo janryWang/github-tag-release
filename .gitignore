@@ -7,10 +7,7 @@ npm-debug.log
 lerna-debug.log
 npm-debug.log*
 package-lock.json
-lib/
-esm/
 temp_esm/
-dist/
 build/
 coverage/
 node_modules/
