@@ -4,7 +4,6 @@ github release by git tags
 
 ```
 name: github-tag-release
-
 on:
   push:
     branches:
