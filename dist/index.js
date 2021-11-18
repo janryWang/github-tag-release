@@ -14218,7 +14218,7 @@ module.exports = /******/ (() => {
       'use strict'
 
       const { Transform, PassThrough } = __webpack_require__(2413)
-      const zlib = __webpack_require__(8761)
+      const zlib = __webpack_require__(1903)
       const mimicResponse = __webpack_require__(3877)
 
       module.exports = (response) => {
@@ -16513,7 +16513,7 @@ module.exports = /******/ (() => {
 
       const fs = __webpack_require__(7758)
       const u = __webpack_require__(9046).fromCallback
-      const rimraf = __webpack_require__(7247)
+      const rimraf = __webpack_require__(8761)
 
       function remove(path, callback) {
         // Node 14.14.0+
@@ -16536,7 +16536,7 @@ module.exports = /******/ (() => {
       /***/
     },
 
-    /***/ 7247: /***/ (
+    /***/ 8761: /***/ (
       module,
       __unused_webpack_exports,
       __webpack_require__
@@ -29399,7 +29399,7 @@ module.exports = /******/ (() => {
       var Url = _interopDefault(__webpack_require__(8835))
       var whatwgUrl = _interopDefault(__webpack_require__(8665))
       var https = _interopDefault(__webpack_require__(7211))
-      var zlib = _interopDefault(__webpack_require__(8761))
+      var zlib = _interopDefault(__webpack_require__(1903))
 
       // Based on https://github.com/tmpvar/jsdom/blob/aa85b2abf07766ff7bf5c1f6daafb3726f2f2db5/lib/jsdom/living/blob.js
 
@@ -49119,6 +49119,7 @@ module.exports = /******/ (() => {
       exports.createChangelogFile = exports.createChangelog = void 0
       const moment_1 = __importDefault(__webpack_require__(9623))
       const string_similarity_1 = __webpack_require__(5054)
+      const fs_extra_1 = __importDefault(__webpack_require__(5630))
       const git_1 = __webpack_require__(6350)
       const constants_1 = __webpack_require__(9042)
       const CommitGroupBy = [
@@ -49237,10 +49238,11 @@ ${log ? log : '### No Change Log'}
             contents += await (0, exports.createChangelog)(older, newer)
           }
         }
-        return `
+        const file = `
   # Changelog
   ${contents}  
   `
+        await fs_extra_1.default.writeFile('CHANGELOG.md', file, 'utf8')
       }
       exports.createChangelogFile = createChangelogFile
 
@@ -49812,7 +49814,7 @@ ${log ? log : '### No Change Log'}
       /***/
     },
 
-    /***/ 8761: /***/ (module) => {
+    /***/ 1903: /***/ (module) => {
       'use strict'
       module.exports = require('zlib')
 

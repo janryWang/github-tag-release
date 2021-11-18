@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { compareTwoStrings } from 'string-similarity'
+import fs from 'fs-extra'
 import {
   listCommits,
   lastTag,
@@ -109,8 +110,10 @@ export const createChangelogFile = async () => {
       contents += await createChangelog(older, newer)
     }
   }
-  return `
+  const file = `
   # Changelog
   ${contents}  
   `
+
+  await fs.writeFile('CHANGELOG.md', file, 'utf8')
 }
