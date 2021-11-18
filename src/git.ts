@@ -99,7 +99,7 @@ export async function listCommits(
   // Prints "hash<short-hash> ref<ref-name> message<summary> date<date>"
   // This format is used in `getCommitInfos` for easily analize the commit.
   const getRange = () => {
-    if (!from || from == to) return to
+    if (!from || from == to) return ''
     return `${from}..${to}`
   }
 
