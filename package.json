@@ -5,9 +5,7 @@
   "description": "A actions that can automatically generate release",
   "main": "dist",
   "scripts": {
-    "build": "ncc build src/index.ts --license licenses.txt",
-    "prebuild": "rm -Rf dist",
-    "postbuild": "git add dist",
+    "build": "rm -Rf dist && ncc build src/index.ts --license licenses.txt",
     "lint": "eslint src/**/*.ts"
   },
   "repository": {
