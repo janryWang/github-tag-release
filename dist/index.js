@@ -49194,7 +49194,6 @@ module.exports = /******/ (() => {
         const start = from || (await (0, git_1.lastTag)())
         const end = to
         const changes = await getGroupChanges(start, end)
-        console.log(start, end, changes)
         const nowDate = isHead
           ? (0, moment_1.default)().format('YYYY-MM-DD')
           : (0, moment_1.default)(
@@ -49235,6 +49234,7 @@ ${log ? log : '### No Change Log'}
             contents += await (0, exports.createChangelog)(older, newer)
           }
         }
+        console.log(contents)
         const file = `
   # Changelog
   ${contents}  
