@@ -49191,9 +49191,7 @@ module.exports = /******/ (() => {
               ? void 0
               : constants_1.PkgJSON.version)
           : to
-        const start = from || (await (0, git_1.lastTag)())
-        const end = to
-        const changes = await getGroupChanges(start, end)
+        const changes = await getGroupChanges(from, to)
         const nowDate = isHead
           ? (0, moment_1.default)().format('YYYY-MM-DD')
           : (0, moment_1.default)(
@@ -49237,6 +49235,7 @@ ${log ? log : '### No Change Log'}
             )
           }
         }
+        console.log(contents)
         const file = `
   # Changelog
   ${contents}  
@@ -49455,12 +49454,11 @@ ${log ? log : '### No Change Log'}
        */
       async function lastTag() {
         var _a
-        const results =
+        return (
           ((_a = await getSortableAllTags()) === null || _a === void 0
             ? void 0
             : _a[0]) || ''
-        console.log('lastTag:', results)
-        return results
+        )
       }
       exports.lastTag = lastTag
       async function getPreviousTag(current) {

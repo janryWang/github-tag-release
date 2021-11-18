@@ -3,7 +3,6 @@ import { compareTwoStrings } from 'string-similarity'
 import fs from 'fs-extra'
 import {
   listCommits,
-  lastTag,
   getTaggedTime,
   getGithubRepoLink,
   getSortableAllTags,
@@ -75,9 +74,7 @@ const getGroupChanges = async (from: string, to = 'HEAD') => {
 export const createChangelog = async (from?: string, to = 'HEAD') => {
   const isHead = to === 'HEAD'
   const headVersion = isHead ? LernaJSON?.version || PkgJSON?.version : to
-  const start = from || (await lastTag())
-  const end = to
-  const changes = await getGroupChanges(start, end)
+  const changes = await getGroupChanges(from, to)
   const nowDate = isHead
     ? moment().format('YYYY-MM-DD')
     : moment(await getTaggedTime(to), 'YYYY-MM-DD').format('YYYY-MM-DD')
@@ -112,6 +109,7 @@ export const createChangelogFile = async () => {
       contents += await createChangelog(older ?? '', newer)
     }
   }
+  console.log(contents)
   const file = `
   # Changelog
   ${contents}  
