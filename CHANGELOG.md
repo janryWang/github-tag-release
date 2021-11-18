@@ -1,6 +1,15 @@
 
   # Changelog
   
+## v0.0.3(2021-11-18)
+
+
+### :blush: Other Changes
+
+1. [chore: update code](https://github.com/janryWang/github-tag-release/commit/181fb11) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )    
+  
+
+
 ## v0.0.2(2021-11-18)
 
 
