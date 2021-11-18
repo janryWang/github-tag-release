@@ -5,7 +5,9 @@
   "description": "A actions that can automatically generate release",
   "main": "dist",
   "scripts": {
-    "build": "tsc",
+    "build": "ncc build src/index.ts --license licenses.txt",
+    "prebuild": "rm -Rf dist",
+    "postbuild": "git add dist",
     "lint": "eslint src/**/*.ts"
   },
   "repository": {
@@ -34,6 +36,7 @@
     "string-similarity": "^4.0.4"
   },
   "devDependencies": {
+    "@vercel/ncc": "^0.25.1",
     "@types/node": "^16.10.5",
     "@types/semver": "^7.3.9",
     "@types/fs-extra": "^9.0.13",
@@ -54,7 +57,7 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "npm run build && lint-staged",
       "commit-msg": "commitlint --edit"
     }
   },
