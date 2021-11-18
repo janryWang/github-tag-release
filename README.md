@@ -14,7 +14,7 @@ on:
 jobs:
   github-tag-release:
     runs-on: ubuntu-latest
-
+    if: contains(github.event.head_commit.message, 'chore(release)')
     steps:
       - uses: actions/checkout@v2
 
