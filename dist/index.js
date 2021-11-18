@@ -49426,7 +49426,7 @@ ${log ? log : '### No Change Log'}
               'describe',
               '--abbrev=0',
               '--tags',
-              current + '^',
+              `"${current}^"`,
             ])
           ).stdout
         } catch {

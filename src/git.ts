@@ -58,7 +58,7 @@ export async function lastTag() {
 export async function getPreviousTag(current: string) {
   try {
     return (
-      await shell('git', ['describe', '--abbrev=0', '--tags', current + '^'])
+      await shell('git', ['describe', '--abbrev=0', '--tags', `"${current}^"`])
     ).stdout
   } catch {
     return ''
