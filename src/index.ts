@@ -12,6 +12,7 @@ const runner = async () => {
     await commit()
     info('Git Commit Success!')
   } catch (e) {
+    console.error(e)
     setFailed(e)
   }
 }

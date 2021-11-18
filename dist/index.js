@@ -49489,6 +49489,7 @@ ${log ? log : '### No Change Log'}
           await (0, commit_1.commit)()
           ;(0, core_1.info)('Git Commit Success!')
         } catch (e) {
+          console.error(e)
           ;(0, core_1.setFailed)(e)
         }
       }
