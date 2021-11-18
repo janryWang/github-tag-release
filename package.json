@@ -6,6 +6,8 @@
   "main": "dist",
   "scripts": {
     "build": "rm -Rf dist && ncc build src/index.ts --license licenses.txt",
+    "prebuild": "rm -Rf dist",
+    "postbuild": "git add dist",
     "lint": "eslint src/**/*.ts"
   },
   "repository": {
