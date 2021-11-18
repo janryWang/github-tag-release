@@ -1,5 +1,5 @@
-import github from '@actions/github'
 import semver from 'semver'
+import { context } from '@actions/github'
 import { GithubToken } from './constants'
 import { shell } from './shell'
 
@@ -38,7 +38,7 @@ export function getGithubToken() {
 }
 
 export function getGithubRepoLink() {
-  const repo = github.context.repo
+  const repo = context.repo
   return `https://github.com/${repo.owner}/${repo.repo}`
 }
 /**

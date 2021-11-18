@@ -49353,8 +49353,8 @@ ${log ? log : '### No Change Log'}
         exports.getSortableAllTags =
         exports.changedPaths =
           void 0
-      const github_1 = __importDefault(__webpack_require__(5438))
       const semver_1 = __importDefault(__webpack_require__(1383))
+      const github_1 = __webpack_require__(5438)
       const constants_1 = __webpack_require__(9042)
       const shell_1 = __webpack_require__(6397)
       async function changedPaths(sha) {
@@ -49397,7 +49397,7 @@ ${log ? log : '### No Change Log'}
       }
       exports.getGithubToken = getGithubToken
       function getGithubRepoLink() {
-        const repo = github_1.default.context.repo
+        const repo = github_1.context.repo
         return `https://github.com/${repo.owner}/${repo.repo}`
       }
       exports.getGithubRepoLink = getGithubRepoLink
