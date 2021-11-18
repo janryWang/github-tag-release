@@ -12,7 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+        with:
+          fetch-depth: 0
       - name: Use github-tag-release
         id: 'github-tag-release'
         uses: ./
