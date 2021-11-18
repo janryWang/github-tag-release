@@ -5,7 +5,7 @@
     "outDir": "./dist",
     "jsx": "react",
     "module": "commonjs",
-    "target": "esnext",
+    "target": "ES2015",
     "allowJs": false,
     "noUnusedLocals": false,
     "preserveConstEnums": true,
