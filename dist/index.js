@@ -50307,9 +50307,11 @@ module.exports = /******/ (() => {
       var commit_1 = __webpack_require__(1730)
       var runner = function () {
         return __awaiter(void 0, void 0, void 0, function () {
+          var e_1
           return __generator(this, function (_a) {
             switch (_a.label) {
               case 0:
+                _a.trys.push([0, 4, , 5])
                 return [4 /*yield*/, (0, changelog_1.createChangelogFile)()]
               case 1:
                 _a.sent()
@@ -50322,6 +50324,12 @@ module.exports = /******/ (() => {
               case 3:
                 _a.sent()
                 console.info('Git Commit Success!')
+                return [3 /*break*/, 5]
+              case 4:
+                e_1 = _a.sent()
+                console.error(e_1)
+                throw e_1
+              case 5:
                 return [2 /*return*/]
             }
           })
