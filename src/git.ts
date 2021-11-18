@@ -20,6 +20,7 @@ export async function getSortableAllTags() {
   return (await shell('git', ['tag', '-l'])).stdout.split(/\n/).sort((a, b) => {
     const v1 = a.replace(/^v/, '')
     const v2 = b.replace(/^v/, '')
+    if (!v1 || !v2) return 1
     return semver.gte(v1, v2) ? -1 : 1
   })
 }
