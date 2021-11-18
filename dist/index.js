@@ -49534,8 +49534,12 @@ ${log ? log : '### No Change Log'}
         try {
           await (0, changelog_1.createChangelogFile)()
           ;(0, core_1.info)('ChangeLog generated success!')
-          await (0, release_note_1.createReleaseNote)()
-          ;(0, core_1.info)('ReleaseNote generated success!')
+          try {
+            await (0, release_note_1.createReleaseNote)()
+            ;(0, core_1.info)('ReleaseNote generated success!')
+          } catch (e) {
+            ;(0, core_1.warning)(e)
+          }
           await (0, commit_1.commit)()
           ;(0, core_1.info)('Git Commit Success!')
         } catch (e) {
