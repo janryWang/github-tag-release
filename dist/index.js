@@ -49388,7 +49388,12 @@ ${log ? log : '### No Change Log'}
       exports.getCurrentBranch = getCurrentBranch
       async function getTaggedTime(tag) {
         return (
-          await (0, shell_1.shell)('git', ['log', '-1', '--format=%ai', tag])
+          await (0, shell_1.shell)('git', [
+            'log',
+            '-1',
+            '--format=%ai',
+            (tag === null || tag === void 0 ? void 0 : tag.trim()) || '',
+          ])
         ).stdout
       }
       exports.getTaggedTime = getTaggedTime
