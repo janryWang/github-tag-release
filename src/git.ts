@@ -63,7 +63,9 @@ export async function listTagNames() {
  * The latest reachable tag starting from HEAD
  */
 export async function lastTag() {
-  return (await getSortableAllTags())?.[0] || ''
+  const results = (await getSortableAllTags())?.[0] || ''
+  console.log('lastTag:', results)
+  return results
 }
 
 export async function getPreviousTag(current: string) {

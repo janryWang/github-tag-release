@@ -49455,11 +49455,12 @@ ${log ? log : '### No Change Log'}
        */
       async function lastTag() {
         var _a
-        return (
+        const results =
           ((_a = await getSortableAllTags()) === null || _a === void 0
             ? void 0
             : _a[0]) || ''
-        )
+        console.log('lastTag:', results)
+        return results
       }
       exports.lastTag = lastTag
       async function getPreviousTag(current) {
