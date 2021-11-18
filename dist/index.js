@@ -49110,182 +49110,6 @@ module.exports = /******/ (() => {
     ) {
       'use strict'
 
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
-      var __generator =
-        (this && this.__generator) ||
-        function (thisArg, body) {
-          var _ = {
-              label: 0,
-              sent: function () {
-                if (t[0] & 1) throw t[1]
-                return t[1]
-              },
-              trys: [],
-              ops: [],
-            },
-            f,
-            y,
-            t,
-            g
-          return (
-            (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-            typeof Symbol === 'function' &&
-              (g[Symbol.iterator] = function () {
-                return this
-              }),
-            g
-          )
-          function verb(n) {
-            return function (v) {
-              return step([n, v])
-            }
-          }
-          function step(op) {
-            if (f) throw new TypeError('Generator is already executing.')
-            while (_)
-              try {
-                if (
-                  ((f = 1),
-                  y &&
-                    (t =
-                      op[0] & 2
-                        ? y['return']
-                        : op[0]
-                        ? y['throw'] || ((t = y['return']) && t.call(y), 0)
-                        : y.next) &&
-                    !(t = t.call(y, op[1])).done)
-                )
-                  return t
-                if (((y = 0), t)) op = [op[0] & 2, t.value]
-                switch (op[0]) {
-                  case 0:
-                  case 1:
-                    t = op
-                    break
-                  case 4:
-                    _.label++
-                    return { value: op[1], done: false }
-                  case 5:
-                    _.label++
-                    y = op[1]
-                    op = [0]
-                    continue
-                  case 7:
-                    op = _.ops.pop()
-                    _.trys.pop()
-                    continue
-                  default:
-                    if (
-                      !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
-                      (op[0] === 6 || op[0] === 2)
-                    ) {
-                      _ = 0
-                      continue
-                    }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-                      _.label = op[1]
-                      break
-                    }
-                    if (op[0] === 6 && _.label < t[1]) {
-                      _.label = t[1]
-                      t = op
-                      break
-                    }
-                    if (t && _.label < t[2]) {
-                      _.label = t[2]
-                      _.ops.push(op)
-                      break
-                    }
-                    if (t[2]) _.ops.pop()
-                    _.trys.pop()
-                    continue
-                }
-                op = body.call(thisArg, _)
-              } catch (e) {
-                op = [6, e]
-                y = 0
-              } finally {
-                f = t = 0
-              }
-            if (op[0] & 5) throw op[1]
-            return { value: op[0] ? op[1] : void 0, done: true }
-          }
-        }
-      var __read =
-        (this && this.__read) ||
-        function (o, n) {
-          var m = typeof Symbol === 'function' && o[Symbol.iterator]
-          if (!m) return o
-          var i = m.call(o),
-            r,
-            ar = [],
-            e
-          try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-              ar.push(r.value)
-          } catch (error) {
-            e = { error: error }
-          } finally {
-            try {
-              if (r && !r.done && (m = i['return'])) m.call(i)
-            } finally {
-              if (e) throw e.error
-            }
-          }
-          return ar
-        }
-      var __values =
-        (this && this.__values) ||
-        function (o) {
-          var s = typeof Symbol === 'function' && Symbol.iterator,
-            m = s && o[s],
-            i = 0
-          if (m) return m.call(o)
-          if (o && typeof o.length === 'number')
-            return {
-              next: function () {
-                if (o && i >= o.length) o = void 0
-                return { value: o && o[i++], done: !o }
-              },
-            }
-          throw new TypeError(
-            s ? 'Object is not iterable.' : 'Symbol.iterator is not defined.'
-          )
-        }
       var __importDefault =
         (this && this.__importDefault) ||
         function (mod) {
@@ -49293,11 +49117,11 @@ module.exports = /******/ (() => {
         }
       Object.defineProperty(exports, '__esModule', { value: true })
       exports.createChangelogFile = exports.createChangelog = void 0
-      var moment_1 = __importDefault(__webpack_require__(9623))
-      var string_similarity_1 = __webpack_require__(5054)
-      var git_1 = __webpack_require__(6350)
-      var constants_1 = __webpack_require__(9042)
-      var CommitGroupBy = [
+      const moment_1 = __importDefault(__webpack_require__(9623))
+      const string_similarity_1 = __webpack_require__(5054)
+      const git_1 = __webpack_require__(6350)
+      const constants_1 = __webpack_require__(9042)
+      const CommitGroupBy = [
         [':tada: Enhancements', ['feat', 'features', 'feature']],
         [':bug: Bug Fixes', ['bug', 'bugfix', 'fix']],
         [':boom: Breaking Changes', ['breaking', 'break']],
@@ -49308,422 +49132,129 @@ module.exports = /******/ (() => {
         [':construction: Add/Update Test Cases', ['test']],
         [':blush: Other Changes', ['chore', 'ci', 'style']],
       ]
-      var isPublishMessage = function (str) {
+      const isPublishMessage = (str) => {
         if (/chore\(\s*(?:versions?|publish|release)\s*\)/.test(str))
           return true
         return /publish v?(?:\d+)\.(?:\d+)\.(?:\d+)/.test(str)
       }
-      var isGithubTagReleaseCommit = function (str) {
+      const isGithubTagReleaseCommit = (str) => {
         return str.includes(constants_1.AutoCommitMessage)
       }
-      var getCurrentChanges = function (from, to) {
-        if (to === void 0) {
-          to = 'HEAD'
-        }
-        return __awaiter(void 0, void 0, void 0, function () {
-          var contents
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                contents = []
-                return [4 /*yield*/, (0, git_1.listCommits)(from, to)]
-              case 1:
-                return [
-                  2 /*return*/,
-                  _a.sent().filter(function (_a) {
-                    var summary = _a.summary
-                    if (
-                      contents.some(function (target) {
-                        return (
-                          (0, string_similarity_1.compareTwoStrings)(
-                            target,
-                            summary
-                          ) > 0.5
-                        )
-                      })
-                    )
-                      return false
-                    if (isPublishMessage(summary)) return false
-                    if (isGithubTagReleaseCommit(summary)) return false
-                    contents.push(summary)
-                    return true
-                  }),
-                ]
+      const getCurrentChanges = async (from, to = 'HEAD') => {
+        const contents = []
+        return (await (0, git_1.listCommits)(from, to)).filter(
+          ({ summary }) => {
+            if (
+              contents.some(
+                (target) =>
+                  (0, string_similarity_1.compareTwoStrings)(target, summary) >
+                  0.5
+              )
+            )
+              return false
+            if (isPublishMessage(summary)) return false
+            if (isGithubTagReleaseCommit(summary)) return false
+            contents.push(summary)
+            return true
+          }
+        )
+      }
+      const getGroupChanges = async (from, to = 'HEAD') => {
+        const changes = await getCurrentChanges(from, to)
+        const results = CommitGroupBy.map(([group]) => [group, []])
+        changes.forEach(({ summary, author, sha }) => {
+          for (const [group, value] of CommitGroupBy) {
+            if (value.some((target) => summary.indexOf(target) === 0)) {
+              results.forEach((item) => {
+                if (item[0] === group) {
+                  item[1].push(
+                    `[${summary}](${(0,
+                    git_1.getGithubRepoLink)()}/commit/${sha}) :point_right: ( [${author}](https://github.com/${author}) )`
+                  )
+                }
+              })
             }
-          })
+          }
+        })
+        return results.filter(([, value]) => {
+          return value.length > 0
         })
       }
-      var getGroupChanges = function (from, to) {
-        if (to === void 0) {
-          to = 'HEAD'
-        }
-        return __awaiter(void 0, void 0, void 0, function () {
-          var changes, results
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                return [4 /*yield*/, getCurrentChanges(from, to)]
-              case 1:
-                changes = _a.sent()
-                results = CommitGroupBy.map(function (_a) {
-                  var _b = __read(_a, 1),
-                    group = _b[0]
-                  return [group, []]
-                })
-                changes.forEach(function (_a) {
-                  var e_1, _b
-                  var summary = _a.summary,
-                    author = _a.author,
-                    sha = _a.sha
-                  var _loop_1 = function (group, value) {
-                    if (
-                      value.some(function (target) {
-                        return summary.indexOf(target) === 0
-                      })
-                    ) {
-                      results.forEach(function (item) {
-                        if (item[0] === group) {
-                          item[1].push(
-                            '[' +
-                              summary +
-                              '](' +
-                              (0, git_1.getGithubRepoLink)() +
-                              '/commit/' +
-                              sha +
-                              ') :point_right: ( [' +
-                              author +
-                              '](https://github.com/' +
-                              author +
-                              ') )'
-                          )
-                        }
-                      })
-                    }
-                  }
-                  try {
-                    for (
-                      var CommitGroupBy_1 = __values(CommitGroupBy),
-                        CommitGroupBy_1_1 = CommitGroupBy_1.next();
-                      !CommitGroupBy_1_1.done;
-                      CommitGroupBy_1_1 = CommitGroupBy_1.next()
-                    ) {
-                      var _c = __read(CommitGroupBy_1_1.value, 2),
-                        group = _c[0],
-                        value = _c[1]
-                      _loop_1(group, value)
-                    }
-                  } catch (e_1_1) {
-                    e_1 = { error: e_1_1 }
-                  } finally {
-                    try {
-                      if (
-                        CommitGroupBy_1_1 &&
-                        !CommitGroupBy_1_1.done &&
-                        (_b = CommitGroupBy_1.return)
-                      )
-                        _b.call(CommitGroupBy_1)
-                    } finally {
-                      if (e_1) throw e_1.error
-                    }
-                  }
-                })
-                return [
-                  2 /*return*/,
-                  results.filter(function (_a) {
-                    var _b = __read(_a, 2),
-                      value = _b[1]
-                    return value.length > 0
-                  }),
-                ]
-            }
+      const createChangelog = async (from, to = 'HEAD') => {
+        const isHead = to === 'HEAD'
+        const headVersion = isHead
+          ? constants_1.LernaJSON?.version ?? constants_1.PkgJSON?.version
+          : to
+        const changes = await getGroupChanges(
+          from ?? (await (0, git_1.lastTag)()),
+          to
+        )
+        const nowDate = isHead
+          ? (0, moment_1.default)().format('YYYY-MM-DD')
+          : (0, moment_1.default)(
+              await (0, git_1.getTaggedTime)(to),
+              'YYYY-MM-DD'
+            ).format('YYYY-MM-DD')
+        const log = changes
+          .map(([group, contents]) => {
+            return `
+### ${group}
+${contents
+  .map((content) => {
+    return `
+1. ${content}    
+`
+  })
+  .join('')}  
+`
           })
-        })
-      }
-      var createChangelog = function (from, to) {
-        if (to === void 0) {
-          to = 'HEAD'
-        }
-        return __awaiter(void 0, void 0, void 0, function () {
-          var isHead, headVersion, changes, _a, _b, nowDate, _c, _d, log
-          var _e
-          return __generator(this, function (_f) {
-            switch (_f.label) {
-              case 0:
-                isHead = to === 'HEAD'
-                headVersion = isHead
-                  ? (_e =
-                      constants_1.LernaJSON === null ||
-                      constants_1.LernaJSON === void 0
-                        ? void 0
-                        : constants_1.LernaJSON.version) !== null &&
-                    _e !== void 0
-                    ? _e
-                    : constants_1.PkgJSON === null ||
-                      constants_1.PkgJSON === void 0
-                    ? void 0
-                    : constants_1.PkgJSON.version
-                  : to
-                _a = getGroupChanges
-                if (!(from !== null && from !== void 0)) return [3 /*break*/, 1]
-                _b = from
-                return [3 /*break*/, 3]
-              case 1:
-                return [4 /*yield*/, (0, git_1.lastTag)()]
-              case 2:
-                _b = _f.sent()
-                _f.label = 3
-              case 3:
-                return [4 /*yield*/, _a.apply(void 0, [_b, to])]
-              case 4:
-                changes = _f.sent()
-                if (!isHead) return [3 /*break*/, 5]
-                _c = (0, moment_1.default)().format('YYYY-MM-DD')
-                return [3 /*break*/, 7]
-              case 5:
-                _d = moment_1.default
-                return [4 /*yield*/, (0, git_1.getTaggedTime)(to)]
-              case 6:
-                _c = _d
-                  .apply(void 0, [_f.sent(), 'YYYY-MM-DD'])
-                  .format('YYYY-MM-DD')
-                _f.label = 7
-              case 7:
-                nowDate = _c
-                log = changes
-                  .map(function (_a) {
-                    var _b = __read(_a, 2),
-                      group = _b[0],
-                      contents = _b[1]
-                    return (
-                      '\n### ' +
-                      group +
-                      '\n' +
-                      contents
-                        .map(function (content) {
-                          return '\n1. ' + content + '    \n'
-                        })
-                        .join('') +
-                      '  \n'
-                    )
-                  })
-                  .join('')
-                return [
-                  2 /*return*/,
-                  '\n## ' +
-                    headVersion +
-                    '(' +
-                    nowDate +
-                    ')\n\n' +
-                    (log ? log : '### No Change Log') +
-                    '\n',
-                ]
-            }
-          })
-        })
+          .join('')
+        return `
+## ${headVersion}(${nowDate})
+
+${log ? log : '### No Change Log'}
+`
       }
       exports.createChangelog = createChangelog
-      var createChangelogFile = function () {
-        return __awaiter(void 0, void 0, void 0, function () {
-          var tags, contents, index, newer, older, _a
-          return __generator(this, function (_b) {
-            switch (_b.label) {
-              case 0:
-                return [4 /*yield*/, (0, git_1.getSortableAllTags)()]
-              case 1:
-                tags = _b.sent().slice(0, constants_1.ChangelogLimit)
-                contents = ''
-                index = 0
-                _b.label = 2
-              case 2:
-                if (!(index < tags.length)) return [3 /*break*/, 5]
-                newer = tags[index]
-                older = tags[index + 1]
-                if (!older) return [3 /*break*/, 4]
-                _a = contents
-                return [4 /*yield*/, (0, exports.createChangelog)(older, newer)]
-              case 3:
-                contents = _a + _b.sent()
-                _b.label = 4
-              case 4:
-                index++
-                return [3 /*break*/, 2]
-              case 5:
-                return [
-                  2 /*return*/,
-                  '\n  # Changelog\n  ' + contents + '  \n  ',
-                ]
-            }
-          })
-        })
+      const createChangelogFile = async () => {
+        const tags = (await (0, git_1.getSortableAllTags)()).slice(
+          0,
+          constants_1.ChangelogLimit
+        )
+        let contents = ''
+        for (let index = 0; index < tags.length; index++) {
+          const newer = tags[index]
+          const older = tags[index + 1]
+          if (older) {
+            contents += await (0, exports.createChangelog)(older, newer)
+          }
+        }
+        return `
+  # Changelog
+  ${contents}  
+  `
       }
       exports.createChangelogFile = createChangelogFile
 
       /***/
     },
 
-    /***/ 1730: /***/ function (
+    /***/ 1730: /***/ (
       __unused_webpack_module,
       exports,
       __webpack_require__
-    ) {
+    ) => {
       'use strict'
 
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
-      var __generator =
-        (this && this.__generator) ||
-        function (thisArg, body) {
-          var _ = {
-              label: 0,
-              sent: function () {
-                if (t[0] & 1) throw t[1]
-                return t[1]
-              },
-              trys: [],
-              ops: [],
-            },
-            f,
-            y,
-            t,
-            g
-          return (
-            (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-            typeof Symbol === 'function' &&
-              (g[Symbol.iterator] = function () {
-                return this
-              }),
-            g
-          )
-          function verb(n) {
-            return function (v) {
-              return step([n, v])
-            }
-          }
-          function step(op) {
-            if (f) throw new TypeError('Generator is already executing.')
-            while (_)
-              try {
-                if (
-                  ((f = 1),
-                  y &&
-                    (t =
-                      op[0] & 2
-                        ? y['return']
-                        : op[0]
-                        ? y['throw'] || ((t = y['return']) && t.call(y), 0)
-                        : y.next) &&
-                    !(t = t.call(y, op[1])).done)
-                )
-                  return t
-                if (((y = 0), t)) op = [op[0] & 2, t.value]
-                switch (op[0]) {
-                  case 0:
-                  case 1:
-                    t = op
-                    break
-                  case 4:
-                    _.label++
-                    return { value: op[1], done: false }
-                  case 5:
-                    _.label++
-                    y = op[1]
-                    op = [0]
-                    continue
-                  case 7:
-                    op = _.ops.pop()
-                    _.trys.pop()
-                    continue
-                  default:
-                    if (
-                      !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
-                      (op[0] === 6 || op[0] === 2)
-                    ) {
-                      _ = 0
-                      continue
-                    }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-                      _.label = op[1]
-                      break
-                    }
-                    if (op[0] === 6 && _.label < t[1]) {
-                      _.label = t[1]
-                      t = op
-                      break
-                    }
-                    if (t && _.label < t[2]) {
-                      _.label = t[2]
-                      _.ops.push(op)
-                      break
-                    }
-                    if (t[2]) _.ops.pop()
-                    _.trys.pop()
-                    continue
-                }
-                op = body.call(thisArg, _)
-              } catch (e) {
-                op = [6, e]
-                y = 0
-              } finally {
-                f = t = 0
-              }
-            if (op[0] & 5) throw op[1]
-            return { value: op[0] ? op[1] : void 0, done: true }
-          }
-        }
       Object.defineProperty(exports, '__esModule', { value: true })
       exports.commit = void 0
-      var constants_1 = __webpack_require__(9042)
-      var shell_1 = __webpack_require__(6397)
-      var commit = function () {
-        return __awaiter(void 0, void 0, void 0, function () {
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                return [
-                  4 /*yield*/,
-                  (0, shell_1.shell)('git', [
-                    '-am',
-                    constants_1.AutoCommitMessage,
-                  ]),
-                ]
-              case 1:
-                return [2 /*return*/, _a.sent()]
-            }
-          })
-        })
+      const constants_1 = __webpack_require__(9042)
+      const shell_1 = __webpack_require__(6397)
+      const commit = async () => {
+        return await (0, shell_1.shell)('git', [
+          '-am',
+          constants_1.AutoCommitMessage,
+        ])
       }
       exports.commit = commit
 
@@ -49742,7 +49273,6 @@ module.exports = /******/ (() => {
         function (mod) {
           return mod && mod.__esModule ? mod : { default: mod }
         }
-      var _a, _b, _c, _d
       Object.defineProperty(exports, '__esModule', { value: true })
       exports.PkgJSON =
         exports.LernaJSON =
@@ -49751,26 +49281,20 @@ module.exports = /******/ (() => {
         exports.AutoCommitMessage =
         exports.ChangelogLimit =
           void 0
-      var fs_extra_1 = __importDefault(__webpack_require__(5630))
-      var core_1 = __webpack_require__(2186)
-      var PkgJSON = {}
+      const fs_extra_1 = __importDefault(__webpack_require__(5630))
+      const core_1 = __webpack_require__(2186)
+      let PkgJSON = {}
       exports.PkgJSON = PkgJSON
-      var LernaJSON = {}
+      let LernaJSON = {}
       exports.LernaJSON = LernaJSON
       try {
         exports.LernaJSON = LernaJSON =
-          (_a = fs_extra_1.default.readJSONSync('lerna.json')) !== null &&
-          _a !== void 0
-            ? _a
-            : {}
-      } catch (_e) {}
+          fs_extra_1.default.readJSONSync('lerna.json') ?? {}
+      } catch {}
       try {
         exports.PkgJSON = PkgJSON =
-          (_b = fs_extra_1.default.readJSONSync('package.json')) !== null &&
-          _b !== void 0
-            ? _b
-            : {}
-      } catch (_f) {}
+          fs_extra_1.default.readJSONSync('package.json') ?? {}
+      } catch {}
       exports.ChangelogLimit = Number(
         (0, core_1.getInput)('changelog_limit') || 40
       )
@@ -49781,10 +49305,8 @@ module.exports = /******/ (() => {
         (0, core_1.getInput)('release_title') || 'Release 🚀'
       exports.GithubToken =
         (0, core_1.getInput)('github_token', { required: true }) ||
-        ((_c = process.env) === null || _c === void 0 ? void 0 : _c.GH_TOKEN) ||
-        ((_d = process.env) === null || _d === void 0
-          ? void 0
-          : _d.GITHUB_TOKEN)
+        process.env?.GH_TOKEN ||
+        process.env?.GITHUB_TOKEN
 
       /***/
     },
@@ -49796,141 +49318,6 @@ module.exports = /******/ (() => {
     ) {
       'use strict'
 
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
-      var __generator =
-        (this && this.__generator) ||
-        function (thisArg, body) {
-          var _ = {
-              label: 0,
-              sent: function () {
-                if (t[0] & 1) throw t[1]
-                return t[1]
-              },
-              trys: [],
-              ops: [],
-            },
-            f,
-            y,
-            t,
-            g
-          return (
-            (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-            typeof Symbol === 'function' &&
-              (g[Symbol.iterator] = function () {
-                return this
-              }),
-            g
-          )
-          function verb(n) {
-            return function (v) {
-              return step([n, v])
-            }
-          }
-          function step(op) {
-            if (f) throw new TypeError('Generator is already executing.')
-            while (_)
-              try {
-                if (
-                  ((f = 1),
-                  y &&
-                    (t =
-                      op[0] & 2
-                        ? y['return']
-                        : op[0]
-                        ? y['throw'] || ((t = y['return']) && t.call(y), 0)
-                        : y.next) &&
-                    !(t = t.call(y, op[1])).done)
-                )
-                  return t
-                if (((y = 0), t)) op = [op[0] & 2, t.value]
-                switch (op[0]) {
-                  case 0:
-                  case 1:
-                    t = op
-                    break
-                  case 4:
-                    _.label++
-                    return { value: op[1], done: false }
-                  case 5:
-                    _.label++
-                    y = op[1]
-                    op = [0]
-                    continue
-                  case 7:
-                    op = _.ops.pop()
-                    _.trys.pop()
-                    continue
-                  default:
-                    if (
-                      !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
-                      (op[0] === 6 || op[0] === 2)
-                    ) {
-                      _ = 0
-                      continue
-                    }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-                      _.label = op[1]
-                      break
-                    }
-                    if (op[0] === 6 && _.label < t[1]) {
-                      _.label = t[1]
-                      t = op
-                      break
-                    }
-                    if (t && _.label < t[2]) {
-                      _.label = t[2]
-                      _.ops.push(op)
-                      break
-                    }
-                    if (t[2]) _.ops.pop()
-                    _.trys.pop()
-                    continue
-                }
-                op = body.call(thisArg, _)
-              } catch (e) {
-                op = [6, e]
-                y = 0
-              } finally {
-                f = t = 0
-              }
-            if (op[0] & 5) throw op[1]
-            return { value: op[0] ? op[1] : void 0, done: true }
-          }
-        }
       var __importDefault =
         (this && this.__importDefault) ||
         function (mod) {
@@ -49949,86 +49336,42 @@ module.exports = /******/ (() => {
         exports.getSortableAllTags =
         exports.changedPaths =
           void 0
-      var github_1 = __importDefault(__webpack_require__(5438))
-      var semver_1 = __importDefault(__webpack_require__(1383))
-      var constants_1 = __webpack_require__(9042)
-      var shell_1 = __webpack_require__(6397)
-      function changedPaths(sha) {
-        return __awaiter(this, void 0, void 0, function () {
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                return [
-                  4 /*yield*/,
-                  (0, shell_1.shell)('git', [
-                    'show',
-                    '-m',
-                    '--name-only',
-                    '--pretty=format:',
-                    '--first-parent',
-                    sha,
-                  ]),
-                ]
-              case 1:
-                return [2 /*return*/, _a.sent().stdout.split('\n')]
-            }
-          })
-        })
+      const github_1 = __importDefault(__webpack_require__(5438))
+      const semver_1 = __importDefault(__webpack_require__(1383))
+      const constants_1 = __webpack_require__(9042)
+      const shell_1 = __webpack_require__(6397)
+      async function changedPaths(sha) {
+        return (
+          await (0, shell_1.shell)('git', [
+            'show',
+            '-m',
+            '--name-only',
+            '--pretty=format:',
+            '--first-parent',
+            sha,
+          ])
+        ).stdout.split('\n')
       }
       exports.changedPaths = changedPaths
-      function getSortableAllTags() {
-        return __awaiter(this, void 0, void 0, function () {
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                return [4 /*yield*/, (0, shell_1.shell)('git', ['tag', '-l'])]
-              case 1:
-                return [
-                  2 /*return*/,
-                  _a
-                    .sent()
-                    .stdout.split(/\n/)
-                    .sort(function (a, b) {
-                      var v1 = a.replace(/^v/, '')
-                      var v2 = b.replace(/^v/, '')
-                      return semver_1.default.gte(v1, v2) ? -1 : 1
-                    }),
-                ]
-            }
+      async function getSortableAllTags() {
+        return (await (0, shell_1.shell)('git', ['tag', '-l'])).stdout
+          .split(/\n/)
+          .sort((a, b) => {
+            const v1 = a.replace(/^v/, '')
+            const v2 = b.replace(/^v/, '')
+            return semver_1.default.gte(v1, v2) ? -1 : 1
           })
-        })
       }
       exports.getSortableAllTags = getSortableAllTags
-      function getCurrentBranch() {
-        return __awaiter(this, void 0, void 0, function () {
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                return [
-                  4 /*yield*/,
-                  (0, shell_1.shell)('git', ['branch', '--show-current']),
-                ]
-              case 1:
-                return [2 /*return*/, _a.sent().stdout]
-            }
-          })
-        })
+      async function getCurrentBranch() {
+        return (await (0, shell_1.shell)('git', ['branch', '--show-current']))
+          .stdout
       }
       exports.getCurrentBranch = getCurrentBranch
-      function getTaggedTime(tag) {
-        return __awaiter(this, void 0, void 0, function () {
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                return [
-                  4 /*yield*/,
-                  (0, shell_1.shell)('git', ['log', '-1', '--format=%ai', tag]),
-                ]
-              case 1:
-                return [2 /*return*/, _a.sent().stdout]
-            }
-          })
-        })
+      async function getTaggedTime(tag) {
+        return (
+          await (0, shell_1.shell)('git', ['log', '-1', '--format=%ai', tag])
+        ).stdout
       }
       exports.getTaggedTime = getTaggedTime
       function getGithubToken() {
@@ -50036,75 +49379,41 @@ module.exports = /******/ (() => {
       }
       exports.getGithubToken = getGithubToken
       function getGithubRepoLink() {
-        var repo = github_1.default.context.repo
-        return 'https://github.com/' + repo.owner + '/' + repo.repo
+        const repo = github_1.default.context.repo
+        return `https://github.com/${repo.owner}/${repo.repo}`
       }
       exports.getGithubRepoLink = getGithubRepoLink
       /**
        * All existing tags in the repository
        */
-      function listTagNames() {
-        return __awaiter(this, void 0, void 0, function () {
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                return [4 /*yield*/, (0, shell_1.shell)('git', ['tag'])]
-              case 1:
-                return [
-                  2 /*return*/,
-                  _a.sent().stdout.split('\n').filter(Boolean),
-                ]
-            }
-          })
-        })
+      async function listTagNames() {
+        return (await (0, shell_1.shell)('git', ['tag'])).stdout
+          .split('\n')
+          .filter(Boolean)
       }
       exports.listTagNames = listTagNames
       /**
        * The latest reachable tag starting from HEAD
        */
-      function lastTag() {
-        return __awaiter(this, void 0, void 0, function () {
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                return [
-                  4 /*yield*/,
-                  (0, shell_1.shell)('git', [
-                    'describe',
-                    '--abbrev=0',
-                    '--tags',
-                  ]),
-                ]
-              case 1:
-                return [2 /*return*/, _a.sent().stdout]
-            }
-          })
-        })
+      async function lastTag() {
+        return (
+          await (0, shell_1.shell)('git', ['describe', '--abbrev=0', '--tags'])
+        ).stdout
       }
       exports.lastTag = lastTag
-      function getPreviousTag(current) {
-        return __awaiter(this, void 0, void 0, function () {
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                return [
-                  4 /*yield*/,
-                  (0, shell_1.shell)('git', [
-                    'describe',
-                    '--abbrev=0',
-                    '--tags',
-                    current + '^',
-                  ]),
-                ]
-              case 1:
-                return [2 /*return*/, _a.sent().stdout]
-            }
-          })
-        })
+      async function getPreviousTag(current) {
+        return (
+          await (0, shell_1.shell)('git', [
+            'describe',
+            '--abbrev=0',
+            '--tags',
+            current + '^',
+          ])
+        ).stdout
       }
       exports.getPreviousTag = getPreviousTag
       function parseLogMessage(commit) {
-        var parts =
+        const parts =
           commit.match(
             /hash<(.+)> ref<(.*)> message<(.*)> date<(.*)> author<(.*)>/
           ) || []
@@ -50120,220 +49429,51 @@ module.exports = /******/ (() => {
         }
       }
       exports.parseLogMessage = parseLogMessage
-      function listCommits(from, to) {
-        if (to === void 0) {
-          to = ''
-        }
-        return __awaiter(this, void 0, void 0, function () {
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                return [
-                  4 /*yield*/,
-                  (0, shell_1.shell)('git', [
-                    'log',
-                    '--oneline',
-                    '--pretty="hash<%h> ref<%D> message<%s> date<%cd> author<%an>"',
-                    '--date=short',
-                    from + '..' + to,
-                  ]),
-                ]
-              case 1:
-                // Prints "hash<short-hash> ref<ref-name> message<summary> date<date>"
-                // This format is used in `getCommitInfos` for easily analize the commit.
-                return [
-                  2 /*return*/,
-                  _a
-                    .sent()
-                    .stdout.split('\n')
-                    .filter(Boolean)
-                    .map(parseLogMessage)
-                    .filter(Boolean),
-                ]
-            }
-          })
-        })
+      async function listCommits(from, to = '') {
+        // Prints "hash<short-hash> ref<ref-name> message<summary> date<date>"
+        // This format is used in `getCommitInfos` for easily analize the commit.
+        return (
+          await (0, shell_1.shell)('git', [
+            'log',
+            '--oneline',
+            '--pretty="hash<%h> ref<%D> message<%s> date<%cd> author<%an>"',
+            '--date=short',
+            `${from}..${to}`,
+          ])
+        ).stdout
+          .split('\n')
+          .filter(Boolean)
+          .map(parseLogMessage)
+          .filter(Boolean)
       }
       exports.listCommits = listCommits
 
       /***/
     },
 
-    /***/ 6144: /***/ function (
+    /***/ 6144: /***/ (
       __unused_webpack_module,
       exports,
       __webpack_require__
-    ) {
+    ) => {
       'use strict'
 
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
-      var __generator =
-        (this && this.__generator) ||
-        function (thisArg, body) {
-          var _ = {
-              label: 0,
-              sent: function () {
-                if (t[0] & 1) throw t[1]
-                return t[1]
-              },
-              trys: [],
-              ops: [],
-            },
-            f,
-            y,
-            t,
-            g
-          return (
-            (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-            typeof Symbol === 'function' &&
-              (g[Symbol.iterator] = function () {
-                return this
-              }),
-            g
-          )
-          function verb(n) {
-            return function (v) {
-              return step([n, v])
-            }
-          }
-          function step(op) {
-            if (f) throw new TypeError('Generator is already executing.')
-            while (_)
-              try {
-                if (
-                  ((f = 1),
-                  y &&
-                    (t =
-                      op[0] & 2
-                        ? y['return']
-                        : op[0]
-                        ? y['throw'] || ((t = y['return']) && t.call(y), 0)
-                        : y.next) &&
-                    !(t = t.call(y, op[1])).done)
-                )
-                  return t
-                if (((y = 0), t)) op = [op[0] & 2, t.value]
-                switch (op[0]) {
-                  case 0:
-                  case 1:
-                    t = op
-                    break
-                  case 4:
-                    _.label++
-                    return { value: op[1], done: false }
-                  case 5:
-                    _.label++
-                    y = op[1]
-                    op = [0]
-                    continue
-                  case 7:
-                    op = _.ops.pop()
-                    _.trys.pop()
-                    continue
-                  default:
-                    if (
-                      !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
-                      (op[0] === 6 || op[0] === 2)
-                    ) {
-                      _ = 0
-                      continue
-                    }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-                      _.label = op[1]
-                      break
-                    }
-                    if (op[0] === 6 && _.label < t[1]) {
-                      _.label = t[1]
-                      t = op
-                      break
-                    }
-                    if (t && _.label < t[2]) {
-                      _.label = t[2]
-                      _.ops.push(op)
-                      break
-                    }
-                    if (t[2]) _.ops.pop()
-                    _.trys.pop()
-                    continue
-                }
-                op = body.call(thisArg, _)
-              } catch (e) {
-                op = [6, e]
-                y = 0
-              } finally {
-                f = t = 0
-              }
-            if (op[0] & 5) throw op[1]
-            return { value: op[0] ? op[1] : void 0, done: true }
-          }
-        }
       Object.defineProperty(exports, '__esModule', { value: true })
-      var changelog_1 = __webpack_require__(8598)
-      var release_note_1 = __webpack_require__(4944)
-      var commit_1 = __webpack_require__(1730)
-      var runner = function () {
-        return __awaiter(void 0, void 0, void 0, function () {
-          var e_1
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                _a.trys.push([0, 4, , 5])
-                return [4 /*yield*/, (0, changelog_1.createChangelogFile)()]
-              case 1:
-                _a.sent()
-                console.info('ChangeLog generated success!')
-                return [4 /*yield*/, (0, release_note_1.createReleaseNote)()]
-              case 2:
-                _a.sent()
-                console.info('ReleaseNote generated success!')
-                return [4 /*yield*/, (0, commit_1.commit)()]
-              case 3:
-                _a.sent()
-                console.info('Git Commit Success!')
-                return [3 /*break*/, 5]
-              case 4:
-                e_1 = _a.sent()
-                console.error(e_1)
-                throw e_1
-              case 5:
-                return [2 /*return*/]
-            }
-          })
-        })
+      const changelog_1 = __webpack_require__(8598)
+      const release_note_1 = __webpack_require__(4944)
+      const commit_1 = __webpack_require__(1730)
+      const runner = async () => {
+        try {
+          await (0, changelog_1.createChangelogFile)()
+          console.info('ChangeLog generated success!')
+          await (0, release_note_1.createReleaseNote)()
+          console.info('ReleaseNote generated success!')
+          await (0, commit_1.commit)()
+          console.info('Git Commit Success!')
+        } catch (e) {
+          console.error(e)
+          throw e
+        }
       }
       runner()
 
@@ -50347,156 +49487,6 @@ module.exports = /******/ (() => {
     ) {
       'use strict'
 
-      var __assign =
-        (this && this.__assign) ||
-        function () {
-          __assign =
-            Object.assign ||
-            function (t) {
-              for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i]
-                for (var p in s)
-                  if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p]
-              }
-              return t
-            }
-          return __assign.apply(this, arguments)
-        }
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
-      var __generator =
-        (this && this.__generator) ||
-        function (thisArg, body) {
-          var _ = {
-              label: 0,
-              sent: function () {
-                if (t[0] & 1) throw t[1]
-                return t[1]
-              },
-              trys: [],
-              ops: [],
-            },
-            f,
-            y,
-            t,
-            g
-          return (
-            (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-            typeof Symbol === 'function' &&
-              (g[Symbol.iterator] = function () {
-                return this
-              }),
-            g
-          )
-          function verb(n) {
-            return function (v) {
-              return step([n, v])
-            }
-          }
-          function step(op) {
-            if (f) throw new TypeError('Generator is already executing.')
-            while (_)
-              try {
-                if (
-                  ((f = 1),
-                  y &&
-                    (t =
-                      op[0] & 2
-                        ? y['return']
-                        : op[0]
-                        ? y['throw'] || ((t = y['return']) && t.call(y), 0)
-                        : y.next) &&
-                    !(t = t.call(y, op[1])).done)
-                )
-                  return t
-                if (((y = 0), t)) op = [op[0] & 2, t.value]
-                switch (op[0]) {
-                  case 0:
-                  case 1:
-                    t = op
-                    break
-                  case 4:
-                    _.label++
-                    return { value: op[1], done: false }
-                  case 5:
-                    _.label++
-                    y = op[1]
-                    op = [0]
-                    continue
-                  case 7:
-                    op = _.ops.pop()
-                    _.trys.pop()
-                    continue
-                  default:
-                    if (
-                      !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
-                      (op[0] === 6 || op[0] === 2)
-                    ) {
-                      _ = 0
-                      continue
-                    }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-                      _.label = op[1]
-                      break
-                    }
-                    if (op[0] === 6 && _.label < t[1]) {
-                      _.label = t[1]
-                      t = op
-                      break
-                    }
-                    if (t && _.label < t[2]) {
-                      _.label = t[2]
-                      _.ops.push(op)
-                      break
-                    }
-                    if (t[2]) _.ops.pop()
-                    _.trys.pop()
-                    continue
-                }
-                op = body.call(thisArg, _)
-              } catch (e) {
-                op = [6, e]
-                y = 0
-              } finally {
-                f = t = 0
-              }
-            if (op[0] & 5) throw op[1]
-            return { value: op[0] ? op[1] : void 0, done: true }
-          }
-        }
       var __importDefault =
         (this && this.__importDefault) ||
         function (mod) {
@@ -50504,62 +49494,44 @@ module.exports = /******/ (() => {
         }
       Object.defineProperty(exports, '__esModule', { value: true })
       exports.createReleaseNote = void 0
-      var gh_release_1 = __importDefault(__webpack_require__(4264))
-      var github_1 = __webpack_require__(5438)
-      var git_1 = __webpack_require__(6350)
-      var changelog_1 = __webpack_require__(8598)
-      var constants_1 = __webpack_require__(9042)
-      var isPrerelease = function (tag) {
+      const gh_release_1 = __importDefault(__webpack_require__(4264))
+      const github_1 = __webpack_require__(5438)
+      const git_1 = __webpack_require__(6350)
+      const changelog_1 = __webpack_require__(8598)
+      const constants_1 = __webpack_require__(9042)
+      const isPrerelease = (tag) => {
         return /(?:beta|rc|alpha)/.test(tag)
       }
-      var createReleaseNote = function () {
-        return __awaiter(void 0, void 0, void 0, function () {
-          var to, from, body, branch, token
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                return [4 /*yield*/, (0, git_1.lastTag)()]
-              case 1:
-                to = _a.sent()
-                return [4 /*yield*/, (0, git_1.getPreviousTag)(to)]
-              case 2:
-                from = _a.sent()
-                return [4 /*yield*/, (0, changelog_1.createChangelog)(from, to)]
-              case 3:
-                body = _a.sent()
-                return [4 /*yield*/, (0, git_1.getCurrentBranch)()]
-              case 4:
-                branch = _a.sent()
-                token = (0, git_1.getGithubToken)()
-                return [
-                  2 /*return*/,
-                  new Promise(function (resolve, reject) {
-                    ;(0, gh_release_1.default)(
-                      __assign(__assign({}, github_1.context.repo), {
-                        cli: true,
-                        tag_name: to,
-                        target_commitish: branch,
-                        name: constants_1.ReleaseTitle + ' - ' + to,
-                        body: body,
-                        draft: false,
-                        prerelease: isPrerelease(to),
-                        endpoint: 'https://api.github.com',
-                        auth: {
-                          token: token,
-                        },
-                      }),
-                      function (err, response) {
-                        if (err) {
-                          reject()
-                        } else {
-                          resolve(response)
-                        }
-                      }
-                    )
-                  }),
-                ]
+      const createReleaseNote = async () => {
+        const to = await (0, git_1.lastTag)()
+        const from = await (0, git_1.getPreviousTag)(to)
+        const body = await (0, changelog_1.createChangelog)(from, to)
+        const branch = await (0, git_1.getCurrentBranch)()
+        const token = (0, git_1.getGithubToken)()
+        return new Promise((resolve, reject) => {
+          ;(0, gh_release_1.default)(
+            {
+              ...github_1.context.repo,
+              cli: true,
+              tag_name: to,
+              target_commitish: branch,
+              name: `${constants_1.ReleaseTitle} - ${to}`,
+              body,
+              draft: false,
+              prerelease: isPrerelease(to),
+              endpoint: 'https://api.github.com',
+              auth: {
+                token,
+              },
+            },
+            (err, response) => {
+              if (err) {
+                reject()
+              } else {
+                resolve(response)
+              }
             }
-          })
+          )
         })
       }
       exports.createReleaseNote = createReleaseNote
@@ -50574,156 +49546,6 @@ module.exports = /******/ (() => {
     ) {
       'use strict'
 
-      var __assign =
-        (this && this.__assign) ||
-        function () {
-          __assign =
-            Object.assign ||
-            function (t) {
-              for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i]
-                for (var p in s)
-                  if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p]
-              }
-              return t
-            }
-          return __assign.apply(this, arguments)
-        }
-      var __awaiter =
-        (this && this.__awaiter) ||
-        function (thisArg, _arguments, P, generator) {
-          function adopt(value) {
-            return value instanceof P
-              ? value
-              : new P(function (resolve) {
-                  resolve(value)
-                })
-          }
-          return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) {
-              try {
-                step(generator.next(value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function rejected(value) {
-              try {
-                step(generator['throw'](value))
-              } catch (e) {
-                reject(e)
-              }
-            }
-            function step(result) {
-              result.done
-                ? resolve(result.value)
-                : adopt(result.value).then(fulfilled, rejected)
-            }
-            step(
-              (generator = generator.apply(thisArg, _arguments || [])).next()
-            )
-          })
-        }
-      var __generator =
-        (this && this.__generator) ||
-        function (thisArg, body) {
-          var _ = {
-              label: 0,
-              sent: function () {
-                if (t[0] & 1) throw t[1]
-                return t[1]
-              },
-              trys: [],
-              ops: [],
-            },
-            f,
-            y,
-            t,
-            g
-          return (
-            (g = { next: verb(0), throw: verb(1), return: verb(2) }),
-            typeof Symbol === 'function' &&
-              (g[Symbol.iterator] = function () {
-                return this
-              }),
-            g
-          )
-          function verb(n) {
-            return function (v) {
-              return step([n, v])
-            }
-          }
-          function step(op) {
-            if (f) throw new TypeError('Generator is already executing.')
-            while (_)
-              try {
-                if (
-                  ((f = 1),
-                  y &&
-                    (t =
-                      op[0] & 2
-                        ? y['return']
-                        : op[0]
-                        ? y['throw'] || ((t = y['return']) && t.call(y), 0)
-                        : y.next) &&
-                    !(t = t.call(y, op[1])).done)
-                )
-                  return t
-                if (((y = 0), t)) op = [op[0] & 2, t.value]
-                switch (op[0]) {
-                  case 0:
-                  case 1:
-                    t = op
-                    break
-                  case 4:
-                    _.label++
-                    return { value: op[1], done: false }
-                  case 5:
-                    _.label++
-                    y = op[1]
-                    op = [0]
-                    continue
-                  case 7:
-                    op = _.ops.pop()
-                    _.trys.pop()
-                    continue
-                  default:
-                    if (
-                      !((t = _.trys), (t = t.length > 0 && t[t.length - 1])) &&
-                      (op[0] === 6 || op[0] === 2)
-                    ) {
-                      _ = 0
-                      continue
-                    }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-                      _.label = op[1]
-                      break
-                    }
-                    if (op[0] === 6 && _.label < t[1]) {
-                      _.label = t[1]
-                      t = op
-                      break
-                    }
-                    if (t && _.label < t[2]) {
-                      _.label = t[2]
-                      _.ops.push(op)
-                      break
-                    }
-                    if (t[2]) _.ops.pop()
-                    _.trys.pop()
-                    continue
-                }
-                op = body.call(thisArg, _)
-              } catch (e) {
-                op = [6, e]
-                y = 0
-              } finally {
-                f = t = 0
-              }
-            if (op[0] & 5) throw op[1]
-            return { value: op[0] ? op[1] : void 0, done: true }
-          }
-        }
       var __importDefault =
         (this && this.__importDefault) ||
         function (mod) {
@@ -50731,46 +49553,31 @@ module.exports = /******/ (() => {
         }
       Object.defineProperty(exports, '__esModule', { value: true })
       exports.shell = void 0
-      var exec_1 = __importDefault(__webpack_require__(1514))
-      var constants_1 = __webpack_require__(9042)
-      var shell = function (commandLine, args) {
-        return __awaiter(void 0, void 0, void 0, function () {
-          var options, stdout, stderr
-          return __generator(this, function (_a) {
-            switch (_a.label) {
-              case 0:
-                options = {
-                  env: __assign(__assign({}, process.env), {
-                    GITHUB_TOKEN: constants_1.GithubToken,
-                    GH_TOKEN: constants_1.GithubToken,
-                  }),
-                }
-                stdout = ''
-                stderr = ''
-                options.listeners = {
-                  stdout: function (data) {
-                    stdout += data.toString()
-                  },
-                  stderr: function (data) {
-                    stderr += data.toString()
-                  },
-                }
-                return [
-                  4 /*yield*/,
-                  exec_1.default.exec(commandLine, args, options),
-                ]
-              case 1:
-                _a.sent()
-                return [
-                  2 /*return*/,
-                  {
-                    stdout: stdout,
-                    stderr: stderr,
-                  },
-                ]
-            }
-          })
-        })
+      const exec_1 = __importDefault(__webpack_require__(1514))
+      const constants_1 = __webpack_require__(9042)
+      const shell = async (commandLine, args) => {
+        const options = {
+          env: {
+            ...process.env,
+            GITHUB_TOKEN: constants_1.GithubToken,
+            GH_TOKEN: constants_1.GithubToken,
+          },
+        }
+        let stdout = ''
+        let stderr = ''
+        options.listeners = {
+          stdout: (data) => {
+            stdout += data.toString()
+          },
+          stderr: (data) => {
+            stderr += data.toString()
+          },
+        }
+        await exec_1.default.exec(commandLine, args, options)
+        return {
+          stdout,
+          stderr,
+        }
       }
       exports.shell = shell
 
