@@ -19,6 +19,7 @@ export const createReleaseNote = async () => {
   const body = await createChangelog(from, to)
   const branch = await getCurrentBranch()
   const token = getGithubToken()
+  console.log(body, branch, token)
   return new Promise((resolve, reject) => {
     ghRelease(
       {
@@ -37,7 +38,7 @@ export const createReleaseNote = async () => {
       },
       (err: unknown, response: unknown) => {
         if (err) {
-          reject()
+          reject(err)
         } else {
           resolve(response)
         }

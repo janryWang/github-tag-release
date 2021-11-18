@@ -49547,6 +49547,7 @@ ${log ? log : '### No Change Log'}
         const body = await (0, changelog_1.createChangelog)(from, to)
         const branch = await (0, git_1.getCurrentBranch)()
         const token = (0, git_1.getGithubToken)()
+        console.log(body, branch, token)
         return new Promise((resolve, reject) => {
           ;(0, gh_release_1.default)(
             {
@@ -49565,7 +49566,7 @@ ${log ? log : '### No Change Log'}
             },
             (err, response) => {
               if (err) {
-                reject()
+                reject(err)
               } else {
                 resolve(response)
               }
