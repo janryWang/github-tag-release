@@ -1,4 +1,5 @@
 import semver from 'semver'
+import path from 'path'
 import { context } from '@actions/github'
 import { GithubToken } from './constants'
 import { shell } from './shell'
@@ -28,7 +29,7 @@ export async function getSortableAllTags() {
 export async function getCurrentBranch() {
   return (
     (await shell('git', ['branch', '--show-current'])).stdout.trim() ||
-    context.ref
+    path.basename(context.ref)
   )
 }
 

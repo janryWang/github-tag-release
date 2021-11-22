@@ -49379,6 +49379,7 @@ ${log ? log : '### No Change Log'}
         exports.changedPaths =
           void 0
       const semver_1 = __importDefault(__webpack_require__(1383))
+      const path_1 = __importDefault(__webpack_require__(5622))
       const github_1 = __webpack_require__(5438)
       const constants_1 = __webpack_require__(9042)
       const shell_1 = __webpack_require__(6397)
@@ -49410,7 +49411,7 @@ ${log ? log : '### No Change Log'}
         return (
           (
             await (0, shell_1.shell)('git', ['branch', '--show-current'])
-          ).stdout.trim() || github_1.context.ref
+          ).stdout.trim() || path_1.default.basename(github_1.context.ref)
         )
       }
       exports.getCurrentBranch = getCurrentBranch
