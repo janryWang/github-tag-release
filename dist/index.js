@@ -49260,6 +49260,7 @@ ${log ? log : '### No Change Log'}
       const git_1 = __webpack_require__(6350)
       const shell_1 = __webpack_require__(6397)
       const commit = async () => {
+        const branch = await (0, git_1.getCurrentBranch)()
         await (0, shell_1.shell)('git', [
           'config',
           '--local',
@@ -49285,7 +49286,7 @@ ${log ? log : '### No Change Log'}
           '-m',
           constants_1.AutoCommitMessage,
         ])
-        await (0, shell_1.shell)('git', ['push'])
+        await (0, shell_1.shell)('git', ['push', 'origin', branch])
       }
       exports.commit = commit
 

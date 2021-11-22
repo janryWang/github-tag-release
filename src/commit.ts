@@ -1,8 +1,9 @@
 import { AutoCommitMessage } from './constants'
-import { getGithubToken, getGithubRepoUrl } from './git'
+import { getGithubToken, getGithubRepoUrl, getCurrentBranch } from './git'
 import { shell } from './shell'
 
 export const commit = async () => {
+  const branch = await getCurrentBranch()
   await shell('git', [
     'config',
     '--local',
@@ -23,5 +24,5 @@ export const commit = async () => {
   ])
   await shell('git', ['add', '-A'])
   await shell('git', ['commit', '-m', AutoCommitMessage])
-  await shell('git', ['push'])
+  await shell('git', ['push', 'origin', branch])
 }
