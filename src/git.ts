@@ -26,7 +26,10 @@ export async function getSortableAllTags() {
 }
 
 export async function getCurrentBranch() {
-  return (await shell('git', ['branch', '--show-current'])).stdout.trim()
+  return (
+    (await shell('git', ['branch', '--show-current'])).stdout.trim() ||
+    context.ref
+  )
 }
 
 export async function getTaggedTime(tag: string) {

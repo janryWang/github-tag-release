@@ -49408,8 +49408,10 @@ ${log ? log : '### No Change Log'}
       exports.getSortableAllTags = getSortableAllTags
       async function getCurrentBranch() {
         return (
-          await (0, shell_1.shell)('git', ['branch', '--show-current'])
-        ).stdout.trim()
+          (
+            await (0, shell_1.shell)('git', ['branch', '--show-current'])
+          ).stdout.trim() || github_1.context.ref
+        )
       }
       exports.getCurrentBranch = getCurrentBranch
       async function getTaggedTime(tag) {
