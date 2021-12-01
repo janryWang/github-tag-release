@@ -1,6 +1,30 @@
 
   # Changelog
   
+## v0.0.4(2021-12-01)
+
+
+### :tada: Enhancements
+
+1. [feat: support dingtalk](https://github.com/janryWang/github-tag-release/commit/59e5b3d) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )    
+  
+
+### :bug: Bug Fixes
+
+1. [fix: fix can not get current branch](https://github.com/janryWang/github-tag-release/commit/028c67a) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )    
+  
+
+### :memo: Documents Changes
+
+1. [docs: update readme](https://github.com/janryWang/github-tag-release/commit/d20cbee) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )    
+  
+
+### :blush: Other Changes
+
+1. [chore: update scripts](https://github.com/janryWang/github-tag-release/commit/534e409) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )    
+  
+
+
 ## v0.0.3(2021-11-18)
 
 
