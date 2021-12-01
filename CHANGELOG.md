@@ -1,6 +1,15 @@
 
   # Changelog
   
+## v0.0.7(2021-12-01)
+
+
+### :blush: Other Changes
+
+1. [chore: add debug info to dingtalk](https://github.com/janryWang/github-tag-release/commit/129ac71) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )    
+  
+
+
 ## v0.0.6(2021-12-01)
 
 
