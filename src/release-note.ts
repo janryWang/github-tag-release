@@ -8,7 +8,7 @@ import {
 } from './git'
 import { createChangelog } from './changelog'
 import { ReleaseTitle } from './constants'
-
+import { createDingTalkNote } from './dingtalk'
 const isPrerelease = (tag: string) => {
   return /(?:beta|rc|alpha)/.test(tag)
 }
@@ -43,5 +43,6 @@ export const createReleaseNote = async () => {
         }
       }
     )
+    createDingTalkNote(body)
   })
 }

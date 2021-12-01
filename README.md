@@ -22,5 +22,6 @@ jobs:
         uses: janrywang/github-tag-release@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          dingtalk_tokens: ${{secrets.DING_TALK_TOKENS}} # token:secret,token:secret,token:secret,...
 
 ```
