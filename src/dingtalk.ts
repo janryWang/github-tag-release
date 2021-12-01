@@ -4,9 +4,9 @@ import { createHmac } from 'crypto'
 import { ReleaseTitle } from './constants'
 
 export const createDingTalkNote = async (content: string) => {
-  const secrets = getInput('dingtalk_secrets')
-  if (secrets) {
-    const results = secrets.split(/\s*,\s*/)
+  const tokens = getInput('dingtalk_tokens')
+  if (tokens) {
+    const results = tokens.split(/\s*,\s*/)
     for (let i = 0; i < results.length; i++) {
       const [token, secret] = results[i]?.split(':') ?? []
       const timestamp = Date.now()

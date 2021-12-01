@@ -53884,9 +53884,9 @@ ${log ? log : '### No Change Log'}
       const constants_1 = __webpack_require__(9042)
       const createDingTalkNote = async (content) => {
         var _a, _b
-        const secrets = (0, core_1.getInput)('dingtalk_secrets')
-        if (secrets) {
-          const results = secrets.split(/\s*,\s*/)
+        const tokens = (0, core_1.getInput)('dingtalk_tokens')
+        if (tokens) {
+          const results = tokens.split(/\s*,\s*/)
           for (let i = 0; i < results.length; i++) {
             const [token, secret] =
               (_b =
