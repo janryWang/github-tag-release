@@ -19,6 +19,7 @@ export const createReleaseNote = async () => {
   const body = await createChangelog(from, to)
   const branch = await getCurrentBranch()
   const token = getGithubToken()
+  await createDingTalkNote(body)
   return new Promise((resolve, reject) => {
     ghRelease(
       {
@@ -39,7 +40,6 @@ export const createReleaseNote = async () => {
         if (err) {
           reject(err)
         } else {
-          await createDingTalkNote(body)
           resolve(response)
         }
       }

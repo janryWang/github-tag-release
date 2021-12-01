@@ -53887,6 +53887,9 @@ ${log ? log : '### No Change Log'}
         const tokens = (0, core_1.getInput)('dingtalk_tokens')
         if (tokens) {
           const results = tokens.split(/\s*,\s*/)
+          if (results.length) {
+            ;(0, core_1.info)('ready to post dingtalk robot')
+          }
           for (let i = 0; i < results.length; i++) {
             const [token, secret] =
               (_b =
@@ -53918,14 +53921,16 @@ ${log ? log : '### No Change Log'}
                 },
               }
             )
-            ;(0, core_1.debug)(
+            ;(0, core_1.info)(
               `Result is ${response.data.errcode}, ${response.data.errmsg}.`
             )
             if (response.data.errcode === 310000) {
-              ;(0, core_1.debug)(`Send Failed: ${response.data}`)
-              ;(0, core_1.debug)(`Please check safe config : ${response.data}`)
+              ;(0, core_1.info)(`Send Failed: ${response.data}`)
+              ;(0, core_1.info)(`Please check safe config : ${response.data}`)
             }
           }
+        } else {
+          ;(0, core_1.info)('no dingtalk tokens')
         }
       }
       exports.createDingTalkNote = createDingTalkNote
@@ -54178,6 +54183,7 @@ ${log ? log : '### No Change Log'}
         const body = await (0, changelog_1.createChangelog)(from, to)
         const branch = await (0, git_1.getCurrentBranch)()
         const token = (0, git_1.getGithubToken)()
+        await (0, dingtalk_1.createDingTalkNote)(body)
         return new Promise((resolve, reject) => {
           ;(0, gh_release_1.default)(
             {
@@ -54198,7 +54204,6 @@ ${log ? log : '### No Change Log'}
               if (err) {
                 reject(err)
               } else {
-                await (0, dingtalk_1.createDingTalkNote)(body)
                 resolve(response)
               }
             }
