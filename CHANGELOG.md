@@ -1,6 +1,15 @@
 
   # Changelog
   
+## v0.0.5(2021-12-01)
+
+
+### :bug: Bug Fixes
+
+1. [fix: dingtalk is not work](https://github.com/janryWang/github-tag-release/commit/17758f7) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )    
+  
+
+
 ## v0.0.4(2021-12-01)
 
 
