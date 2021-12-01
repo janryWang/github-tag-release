@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getInput, debug } from '@actions/core'
+import { getInput, info } from '@actions/core'
 import { createHmac } from 'crypto'
 import { ReleaseTitle } from './constants'
 
@@ -7,6 +7,9 @@ export const createDingTalkNote = async (content: string) => {
   const tokens = getInput('dingtalk_tokens')
   if (tokens) {
     const results = tokens.split(/\s*,\s*/)
+    if (results.length) {
+      info('ready to post dingtalk robot')
+    }
     for (let i = 0; i < results.length; i++) {
       const [token, secret] = results[i]?.split(':') ?? []
       const timestamp = Date.now()
@@ -32,11 +35,13 @@ export const createDingTalkNote = async (content: string) => {
           },
         }
       )
-      debug(`Result is ${response.data.errcode}, ${response.data.errmsg}.`)
+      info(`Result is ${response.data.errcode}, ${response.data.errmsg}.`)
       if (response.data.errcode === 310000) {
-        debug(`Send Failed: ${response.data}`)
-        debug(`Please check safe config : ${response.data}`)
+        info(`Send Failed: ${response.data}`)
+        info(`Please check safe config : ${response.data}`)
       }
     }
+  } else {
+    info('no dingtalk tokens')
   }
 }
