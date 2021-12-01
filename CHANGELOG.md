@@ -1,6 +1,15 @@
 
   # Changelog
   
+## v0.0.9(2021-12-01)
+
+
+### :tada: Enhancements
+
+1. [feat: support emoji content to dingtalk](https://github.com/janryWang/github-tag-release/commit/bb4bfd4) :point_right: ( [zhili.wzl](https://github.com/zhili.wzl) )    
+  
+
+
 ## v0.0.8(2021-12-01)
 
 
