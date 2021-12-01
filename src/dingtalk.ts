@@ -7,7 +7,7 @@ import emoji from 'remark-emoji'
 
 export const createDingTalkNote = async (content: string) => {
   const tokens = getInput('dingtalk_tokens')
-  const text = await remark()
+  const { contents: text } = await remark()
     .use(emoji)
     .process(`# ${ReleaseTitle}\n${content}`)
   if (tokens) {

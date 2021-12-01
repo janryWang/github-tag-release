@@ -67157,7 +67157,7 @@ ${log ? log : '### No Change Log'}
       const createDingTalkNote = async (content) => {
         var _a, _b
         const tokens = core_1.getInput('dingtalk_tokens')
-        const text = await remark_1
+        const { contents: text } = await remark_1
           .default()
           .use(remark_emoji_1.default)
           .process(`# ${constants_1.ReleaseTitle}\n${content}`)
