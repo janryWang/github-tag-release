@@ -2,9 +2,14 @@ import axios from 'axios'
 import { getInput, info } from '@actions/core'
 import { createHmac } from 'crypto'
 import { ReleaseTitle } from './constants'
+import remark from 'remark'
+import emoji from 'remark-emoji'
 
 export const createDingTalkNote = async (content: string) => {
   const tokens = getInput('dingtalk_tokens')
+  const text = await remark()
+    .use(emoji)
+    .process(`# ${ReleaseTitle}\n${content}`)
   if (tokens) {
     const results = tokens.split(/\s*,\s*/)
     if (results.length) {
@@ -23,7 +28,7 @@ export const createDingTalkNote = async (content: string) => {
           msgtype: 'markdown',
           markdown: {
             title: ReleaseTitle,
-            text: content,
+            text,
           },
           at: {
             isAtAll: true,
