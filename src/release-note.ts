@@ -35,14 +35,14 @@ export const createReleaseNote = async () => {
           token,
         },
       },
-      (err: unknown, response: unknown) => {
+      async (err: unknown, response: unknown) => {
         if (err) {
           reject(err)
         } else {
+          await createDingTalkNote(body)
           resolve(response)
         }
       }
     )
-    createDingTalkNote(body)
   })
 }

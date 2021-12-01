@@ -54194,15 +54194,15 @@ ${log ? log : '### No Change Log'}
                 token,
               },
             },
-            (err, response) => {
+            async (err, response) => {
               if (err) {
                 reject(err)
               } else {
+                await (0, dingtalk_1.createDingTalkNote)(body)
                 resolve(response)
               }
             }
           )
-          ;(0, dingtalk_1.createDingTalkNote)(body)
         })
       }
       exports.createReleaseNote = createReleaseNote
