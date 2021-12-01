@@ -1,6 +1,6 @@
 {
   "name": "github-tag-release",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": true,
   "description": "A actions that can automatically generate release",
   "main": "dist",
