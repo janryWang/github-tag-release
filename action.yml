@@ -8,6 +8,8 @@ inputs:
   github_token:
     required: true
     description: the GITHUB_TOKEN
+  dingtalk_tokens:
+    description: Ding Ding tokens
   changelog_limit:
     description: Changelog Max Items
   release_title:
