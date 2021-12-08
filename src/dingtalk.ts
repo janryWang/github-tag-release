@@ -30,9 +30,6 @@ export const createDingTalkNote = async (content: string) => {
             title: ReleaseTitle,
             text,
           },
-          at: {
-            isAtAll: true,
-          },
         }),
         {
           headers: {
