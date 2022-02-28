@@ -24,5 +24,5 @@ export const commit = async () => {
   ])
   await shell('git', ['add', '-A'])
   await shell('git', ['commit', '-m', AutoCommitMessage])
-  await shell('git', ['push', 'origin', branch])
+  await shell('git', ['push', 'origin', `HEAD:${branch}`])
 }
