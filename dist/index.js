@@ -67171,7 +67171,7 @@ ${log ? log : '### No Change Log'}
               (_b =
                 (_a = results[i]) === null || _a === void 0
                   ? void 0
-                  : _a.split(':')) !== null && _b !== void 0
+                  : _a.split(/\s*[:=]\s*/)) !== null && _b !== void 0
                 ? _b
                 : []
             const timestamp = Date.now()

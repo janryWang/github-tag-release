@@ -16,7 +16,7 @@ export const createDingTalkNote = async (content: string) => {
       info('ready to post dingtalk robot')
     }
     for (let i = 0; i < results.length; i++) {
-      const [token, secret] = results[i]?.split(':') ?? []
+      const [token, secret] = results[i]?.split(/\s*[:=]\s*/) ?? []
       const timestamp = Date.now()
       const sign = createHmac('sha256', secret)
         .update(`${timestamp}\n${secret}`)
