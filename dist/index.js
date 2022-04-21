@@ -67162,7 +67162,7 @@ ${log ? log : '### No Change Log'}
           .use(remark_emoji_1.default)
           .process(`# ${constants_1.ReleaseTitle}\n${content}`)
         if (tokens) {
-          const results = tokens.split(/\s*[,;\/|]\s*/)
+          const results = tokens.split(/\s*[,;\/|&]\s*/)
           if (results.length) {
             core_1.info('ready to post dingtalk robot')
           }
