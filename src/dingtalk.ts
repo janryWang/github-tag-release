@@ -11,7 +11,7 @@ export const createDingTalkNote = async (content: string) => {
     .use(emoji)
     .process(`# ${ReleaseTitle}\n${content}`)
   if (tokens) {
-    const results = tokens.split(/\s*,\s*/)
+    const results = tokens.split(/\s*[,;\/|]\s*/)
     if (results.length) {
       info('ready to post dingtalk robot')
     }
